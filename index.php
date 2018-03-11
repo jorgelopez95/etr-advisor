@@ -319,33 +319,29 @@
 	
         <div class="row">
             <div class="col-md-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3002.7683467614406!2d-3.8375662847629326!3d40.40540816425226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418f59d1469d93%3A0xf68b5804693b49f0!2sCampus+Montegancedo+-+Universidad+Polit%C3%A9cnica+de+Madrid!5e1!3m2!1ses!2ses!4v1520724376251" width="700" height="350" frameborder="0" style="border:0; padding-left: 20px" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3002.7683467614406!2d-3.8375662847629326!3d40.40540816425226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418f59d1469d93%3A0xf68b5804693b49f0!2sCampus+Montegancedo+-+Universidad+Polit%C3%A9cnica+de+Madrid!5e1!3m2!1ses!2ses!4v1520724376251" width="650" height="350" frameborder="0" style="border:0; padding-left: 20px" allowfullscreen></iframe>
             </div>
-
             <div class="col-md-6">
                 <h4 style="margin-top: 20px; margin-bottom: 20px; padding-left: 25px"><b>Envíanos tus comentarios</b></h4>
-                <form>
+                <form action="contact.php" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="" value="" placeholder="Nombre *" required>
+                        <input type="text" class="form-control" name="name" value="" placeholder="Nombre *" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" name="" value="" placeholder="E-mail *" required>
+                        <input type="email" class="form-control" name="email" value="" placeholder="E-mail *" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" class="form-control" name="" value="" placeholder="Asunto *" required>
+                        <input type="text" class="form-control" name="subject" value="" placeholder="Asunto *" required>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="" rows="3" placeholder="Mensaje *" required></textarea>
+                        <textarea class="form-control" name="message" rows="3" placeholder="Mensaje *" required></textarea>
                     </div>
                     <h6 style="margin-left: 75%">* Campos obligatorios</h6>
-                    <button class="btn btn-default" type="submit" name="button" style="margin-left: 35px; background-color:aliceblue; color:black">Enviar&nbsp<span class="glyphicon glyphicon-send"></span>
+                    <button class="btn btn-default" type="submit" name="submit" value="submit" style="margin-left: 35px; background-color:aliceblue; color:black">Enviar&nbsp<span class="glyphicon glyphicon-send"></span>
                     </button>
                 </form>
             </div>
         </div>
-        
-        
-        
         
     <!-- Button back-to-top -->
     <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
