@@ -1,24 +1,35 @@
 <?php
+    require './vendor/autoload.php';
+    
     //Check the submit action of contact from index.php
-	if ($_SERVER["REQUEST_METHOD"] == "POST")  {  
+	if ($_SERVER["REQUEST_METHOD"] == "POST")  { 
         //Filds of the form
         $name = $_POST['name'];
         $email = $_POST['email'];
         $subject = $_POST['subject'];
         $message = $_POST['message'];
         
-        //Composing the email message
-        $email_from = $email;
-        $email_subject = "[Easy-to-Read Advisor]: $subject";
-        $email_body = "Nuevo mensaje en Easy-to-Read Advisor: \n".
-                        "Nombre: $name \n".
-                        "Mensaje:\n $message";
-        $to = "jorge.lgi@hotmail.com";
-        $headers = "From: $email_from \r\n";
+        //Content
+       // $from = new SendGrid\Email($name, $email);
+                $from = new SendGrid\Email("Prueba", "prueba@gmail.com");
+        $subject = $subject;
+        $to = new SendGrid\Email("Easy-to-Read Advisorr", "jorge.lgi@hotmail.com");
+        $content = new SendGrid\Content("text/html", "
+        Nuevo mensaje en Easy-to-Read Advisor: <br>
+         - De: {$name} <br>
+         - Mensaje: <br>
+            {$message}
+        ");
+        //Sending the mail
+        $mail = new SendGrid\Mail($from, $subject, $to, $content);
+        $apiKey = ('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');
+        $sg = new \SendGrid($apiKey);
         
-        //Sending the email
-        mail($to, $email_subject, $email_body, $headers);
         
+        //Response
+        $response = $sg->client->mail()->send()->post($mail);
+    
+   
         //Reloading index and sending ok message
         $confirmacion = "** Mensaje enviado correctamente. Gracias por su interés **";
         echo "<script>"; 
