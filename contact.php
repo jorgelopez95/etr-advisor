@@ -10,25 +10,26 @@
         $message = $_POST['message'];
         
         //Content
-       // $from = new SendGrid\Email($name, $email);
-                $from = new SendGrid\Email("Prueba", "prueba@gmail.com");
+        $from = new SendGrid\Email($name, $email);
         $subject = $subject;
-        $to = new SendGrid\Email("Easy-to-Read Advisorr", "jorge.lgi@hotmail.com");
+        $to = new SendGrid\Email("Jorge Lopez", "jorge.lgi@hotmail.com");
         $content = new SendGrid\Content("text/html", "
         Nuevo mensaje en Easy-to-Read Advisor: <br>
          - De: {$name} <br>
          - Mensaje: <br>
             {$message}
         ");
+        
         //Sending the mail
         $mail = new SendGrid\Mail($from, $subject, $to, $content);
         $apiKey = ('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');
         $sg = new \SendGrid($apiKey);
         
-        
         //Response
         $response = $sg->client->mail()->send()->post($mail);
-    
+        echo $response->statusCode();
+        echo $response->body();
+        echo $response->headers();
    
         //Reloading index and sending ok message
         $confirmacion = "** Mensaje enviado correctamente. Gracias por su interés **";
