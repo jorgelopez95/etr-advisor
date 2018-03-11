@@ -1,9 +1,6 @@
 body {
     padding-bottom: 20px;
 }
-.container {
-    margin-left: 5%;
-}
 
 /* NAVBAR */
 .navbar{
@@ -50,7 +47,7 @@ body {
 }
 #navbarMain a:hover {
     background-color: #05668D;
-    color: red;
+    color: ghostwhite;
 }
 
 /* CAROUSEL */
@@ -106,14 +103,25 @@ body {
   letter-spacing: -1px;
 }
 
+/* METODOLOGIA */
+#metodologia{
+    margin-top: 15px; 
+    padding-left: 20px;
+}
+
 /* PAUTAS */
+#pautas{
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    text-align: left; 
+    padding-left: 0px
+}
 .table thead tr th{
     text-align: center;
 }
 .table tbody tr td{
     padding-left: 50px;
 }
-
 
 /*INFO BUTTON*/
 .info {
@@ -155,7 +163,6 @@ body {
     text-align: left;
 }
 
-
 /* BACK TO TOP BUTTON */
 .back-to-top {
     cursor: pointer;
@@ -165,7 +172,10 @@ body {
     display: none;
 }
 
-
+.form-group{
+    width: 90%;
+    padding-left: 30px;
+}
 
 .jumbotron-billboard .img {
     margin-bottom: 0px;
@@ -212,6 +222,9 @@ body {
 }
 
 @media (max-width:770px) {
+    .navbar-header{
+        margin-bottom: 10px
+    }
     .navbar-header h1{
         text-align: center;
         margin-right: 0;
@@ -227,10 +240,36 @@ body {
         padding: 15px;
         padding-left: 40%;
     }
+    #pautas {
+        text-align: center;
+    }
+    #metodologia {
+        text-align: center;
+        padding-right: 50px; 
+    }
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: white;
+        border-top-style: dotted;
+        margin-left: 10px;
+        width: 100%; 
+    }
+    .row{
+        width: 100%;
+    }
 }
 
 @media (min-width: 992px) {
     .container {
+        width: 100%;
+    }
+    .row {
+        padding-left: 40px;
+       width: 100%;
+    }
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{
+        width: 42%;
+    }
+    .well{
         width: 100%;
     }
     .featurette-heading {
