@@ -1,0 +1,44 @@
+[17-Mar-2018 20:43:22 UTC] PHP Notice:  Undefined variable: file in /home/ubuntu/workspace/input/upload.php on line 3
+[17-Mar-2018 20:43:23 UTC] PHP Notice:  Undefined variable: file_name in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 20:44:49 UTC] PHP Notice:  Undefined variable: file in /home/ubuntu/workspace/input/upload.php on line 3
+[17-Mar-2018 20:44:49 UTC] PHP Notice:  Undefined variable: file_name in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 20:47:38 UTC] PHP Notice:  Undefined variable: file in /home/ubuntu/workspace/input/upload.php on line 3
+[17-Mar-2018 20:47:38 UTC] PHP Notice:  Undefined variable: file_name in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 20:48:12 UTC] PHP Notice:  Undefined variable: file in /home/ubuntu/workspace/input/upload.php on line 3
+[17-Mar-2018 20:48:12 UTC] PHP Notice:  Undefined variable: file_name in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 20:50:27 UTC] PHP Notice:  Undefined variable: file in /home/ubuntu/workspace/input/upload.php on line 3
+[17-Mar-2018 20:50:27 UTC] PHP Notice:  Undefined variable: file_name in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 20:50:27 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 9
+[17-Mar-2018 20:50:27 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 13
+[17-Mar-2018 20:50:27 UTC] PHP Notice:  Undefined variable: uploadOk in /home/ubuntu/workspace/input/upload.php on line 22
+[17-Mar-2018 20:50:56 UTC] PHP Notice:  Undefined variable: file in /home/ubuntu/workspace/input/upload.php on line 3
+[17-Mar-2018 20:50:56 UTC] PHP Notice:  Undefined variable: file_name in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 20:50:56 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 9
+[17-Mar-2018 20:50:56 UTC] PHP Notice:  Undefined variable: uploadOk in /home/ubuntu/workspace/input/upload.php on line 22
+[17-Mar-2018 20:52:26 UTC] PHP Notice:  Undefined variable: file in /home/ubuntu/workspace/input/upload.php on line 3
+[17-Mar-2018 20:52:26 UTC] PHP Notice:  Undefined variable: file_name in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 20:52:26 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 9
+[17-Mar-2018 20:52:26 UTC] PHP Notice:  Undefined index: file_name in /home/ubuntu/workspace/input/upload.php on line 27
+[17-Mar-2018 20:52:26 UTC] PHP Notice:  Use of undefined constant window - assumed 'window' in /home/ubuntu/workspace/input/upload.php on line 28
+[17-Mar-2018 20:52:26 UTC] PHP Fatal error:  Call to undefined function location() in /home/ubuntu/workspace/input/upload.php on line 28
+[17-Mar-2018 20:58:51 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 8
+[17-Mar-2018 20:58:51 UTC] PHP Notice:  Undefined index: file_name in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 20:58:51 UTC] PHP Warning:  move_uploaded_file(): The second argument to copy() function cannot be a directory in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 20:58:51 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpNyR9sv' to './tmp/' in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 20:58:59 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 8
+[17-Mar-2018 20:58:59 UTC] PHP Notice:  Undefined index: file_name in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 20:58:59 UTC] PHP Warning:  move_uploaded_file(): The second argument to copy() function cannot be a directory in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 20:58:59 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpCHkZG7' to './tmp/' in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 20:59:21 UTC] PHP Notice:  Undefined index: file_uploaded in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 20:59:21 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 8
+[17-Mar-2018 20:59:21 UTC] PHP Notice:  Undefined index: file_uploaded in /home/ubuntu/workspace/input/upload.php on line 17
+[17-Mar-2018 20:59:21 UTC] PHP Notice:  Undefined index: file_uploaded in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 20:59:21 UTC] PHP Notice:  Undefined index: file_uploaded in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 21:02:30 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 8
+[17-Mar-2018 21:04:29 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 8
+[17-Mar-2018 21:05:50 UTC] PHP Notice:  Undefined index: file_uploaded in /home/ubuntu/workspace/input/upload.php on line 4
+[17-Mar-2018 21:05:50 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 8
+[17-Mar-2018 21:05:50 UTC] PHP Notice:  Undefined index: file_uploaded in /home/ubuntu/workspace/input/upload.php on line 17
+[17-Mar-2018 21:05:50 UTC] PHP Notice:  Undefined index: file_uploaded in /home/ubuntu/workspace/input/upload.php on line 26
+[17-Mar-2018 21:06:26 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 8
+[17-Mar-2018 22:15:40 UTC] PHP Notice:  Undefined index: file_upload in /home/ubuntu/workspace/input/upload.php on line 8
