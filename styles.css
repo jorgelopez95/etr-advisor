@@ -80,6 +80,12 @@ body {
     height: 500px;
 }
 
+/* UPLOAD FILE */
+#upload{
+    margin-left: 42%; 
+    margin-top: 10px
+}
+
 /* MARKETING CONTENT */
 .marketing .col-lg-4 {
   margin-bottom: 20px;
@@ -240,6 +246,9 @@ body {
         padding: 15px;
         padding-left: 40%;
     }
+    #upload{
+        margin-left: 25%;
+    }
     #pautas {
         text-align: center;
     }
@@ -254,6 +263,9 @@ body {
         width: 100%; 
     }
     .row{
+        width: 100%;
+    }
+    #map{
         width: 100%;
     }
 }
@@ -271,6 +283,9 @@ body {
     }
     .well{
         width: 100%;
+    }
+    #browse{
+        margin-left: 25%;
     }
     .featurette-heading {
         margin-top: 120px;

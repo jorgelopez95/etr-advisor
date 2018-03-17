@@ -96,18 +96,34 @@
       </a>
     </div>
     
-          <div class="jumbotron jumbotron-billboard" style="margin: 0">
-            <div class="img"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 style="text-align: center; font-size: 30px">Comprueba aquí si tu archivo es de Lectura Fácil</h2>
-                    
-                        <a href="#" class="btn btn-success btn-lg" style="margin-left: 45%; margin-top: 20px">Subir archivo</a>
-                    </div>
+    <!-- Upload file -->
+    <div class="jumbotron jumbotron-billboard" style="margin: 0">
+        <div class="img"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 style="text-align: center; font-size: 30px">Comprueba aquí si tu archivo es de Lectura Fácil</h2>
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <div class="col-lg-6 col-sm-6 col-md-12" id="browse" style="margin-top: 20px">
+                            <div class="input-group">
+                                <label class="input-group-btn">
+                                    <span class="btn btn-primary">
+                                        Browse &nbsp<span class="glyphicon glyphicon-folder-open"></span> <input type="file" style="display: none;" multiple>
+                                    </span>
+                                </label>
+                                <input type="text" class="form-control" name="file_upload">
+                            </div>
+                            <span class="help-block">
+                                Solo se permiten archivos con extensión .html
+                            </span>
+                        </div>
+                    <input type="submit" class="btn btn-success btn-lg" id="upload" value="Comprobar resultados">
+                    </form>
                 </div>
-            </div>  
+            </div>
         </div>
+    </div>
+            
     <!-- Informacion del sitio web -->
     <div class="container marketing" style="margin: 0px; padding: 0px">
         <div class="well" id="info" style="margin-top: 40px">
@@ -319,7 +335,7 @@
 	
         <div class="row">
             <div class="col-md-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3002.7683467614406!2d-3.8375662847629326!3d40.40540816425226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418f59d1469d93%3A0xf68b5804693b49f0!2sCampus+Montegancedo+-+Universidad+Polit%C3%A9cnica+de+Madrid!5e1!3m2!1ses!2ses!4v1520724376251" width="650" height="350" frameborder="0" style="border:0; padding-left: 20px" allowfullscreen></iframe>
+                <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3002.7683467614406!2d-3.8375662847629326!3d40.40540816425226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418f59d1469d93%3A0xf68b5804693b49f0!2sCampus+Montegancedo+-+Universidad+Polit%C3%A9cnica+de+Madrid!5e1!3m2!1ses!2ses!4v1520724376251" width="650" height="350" frameborder="0" style="border:0; padding-left: 20px" allowfullscreen></iframe>
             </div>
             <div class="col-md-6">
                 <h4 style="margin-top: 20px; margin-bottom: 20px; padding-left: 25px"><b>Envíanos tus comentarios</b></h4>
