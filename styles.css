@@ -122,6 +122,18 @@ body {
     text-align: left; 
     padding-left: 0px
 }
+#analisis{
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    text-align: left; 
+    padding-left: 0px
+}
+#puntuacion{
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    text-align: left; 
+    padding-left: 0px
+}
 .table thead tr th{
     text-align: center;
 }
@@ -250,6 +262,12 @@ body {
         margin-left: 25%;
     }
     #pautas {
+        text-align: center;
+    }
+    #analisis {
+        text-align: center;
+    }
+    #puntuacion {
         text-align: center;
     }
     #metodologia {

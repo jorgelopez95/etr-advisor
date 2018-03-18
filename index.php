@@ -112,10 +112,10 @@
                                         <input type="file" name="file_uploaded" style="display: none;">
                                     </span>
                                 </label>
-                                <input type="text" class="form-control" name="file_name" style="padding-left: 35%; font-size: 20px;" required>
+                                <input type="text" class="form-control" name="file_name" style="padding-left: 20%; font-size: 20px;" required>
                             </div>
                             <span class="help-block" style="text-align:center">
-                                Solo se permiten archivos con extensión .html
+                                Solo se permiten archivos de tipo html
                             </span>
                         </div>
                     <input type="submit" class="btn btn-success btn-lg" id="upload" value="Comprobar resultados">
@@ -372,48 +372,8 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 50) {
-                    $('#back-to-top').fadeIn();
-                } else {
-                    $('#back-to-top').fadeOut();
-                }
-            });
-            $('#back-to-top').click(function () {
-                $('#back-to-top').tooltip('hide');
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 800);
-                return false;
-            });        
-            $('#back-to-top').tooltip('show');
-        });
-    </script>
-    <script>
-        $(function() {
-        
-          $(document).on('change', ':file', function() {
-            var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-            input.trigger('fileselect', [numFiles, label]);
-          });
-        
-          $(document).ready( function() {
-              $(':file').on('fileselect', function(event, numFiles, label) {
-                  var input = $(this).parents('.input-group').find(':text'),
-                    log = numFiles > 1 ? numFiles + ' files selected' : label;
-                  if( input.length ) {
-                    input.val(log);
-                  }else {
-                    if( log ) alert(log);
-                  }
-              });
-          });
-        });
-    </script>
+    <script src="./scripts/browse.js"></script>
+    <script src="./scripts/top.js"></script>
 </body>
     
 </html>

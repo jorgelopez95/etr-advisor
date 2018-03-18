@@ -1,35 +1,35 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST")  { 
+        extract($_POST);
+        
         $target_dir = "./tmp/";
         $target_file = $target_dir . basename($_FILES["file_uploaded"]["tmp_name"]);
-        $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $file = $_FILES['file_uploaded']['tmp_name'];
         
-        // Check whether something is wrong
-        if($_FILES['file_upload']['error'] > 0){
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $finfo = new finfo(FILEINFO_MIME);
+        
+        if (strpos($finfo->file($_FILES['file_uploaded']['tmp_name']),'text/html') === 0) {
+          if (move_uploaded_file($file, $target_file)) {
+                header('Location:../result.php');
+          } else {
             $alerta = "** Ha habido un problema. Inténtelo de nuevo **";
             echo "<script>"; 
                 echo "if(alert('$alerta'));";  
                     echo "window.location = '../index.php';"; 
             echo "</script>"; 
+          }
         }
-        
-        // We only allow only html files
-        if($_FILES['file_uploaded']['type'] != 'text/html'){
-            $alerta = "** Debe subir un archivo con extensión .html **";
+        else{
+            $alerta = "** Debe subir un archivo de tipo html **";
             echo "<script>"; 
                 echo "if(alert('$alerta'));";  
                     echo "window.location = '../index.php';"; 
             echo "</script>"; 
         }
-        
-        // Upload file
-        if (move_uploaded_file($_FILES["file_uploaded"]["tmp_name"], $target_file)) {
-                header('Location:../resultado.php');
-        } else {
-                echo "Sorry, there was an error uploading your file.";
-        }
     }
     else{
-        console.log("Input fail");
+        header("HTTP/1.0 405 Method Not Allowed"); 
+        //echo "Input fail";
     }
 ?>
