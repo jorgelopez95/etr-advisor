@@ -1,4 +1,5 @@
 $(document).ready(function(){  
+    myVar = setTimeout(showPage, 3000);
     var chart = AmCharts.makeChart("chartdiv", {
         "type": "pie",
         "theme": "light",

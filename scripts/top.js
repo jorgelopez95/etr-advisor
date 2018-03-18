@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    
-    /* BACK TO TOP */
     $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
             $('#back-to-top').fadeIn();

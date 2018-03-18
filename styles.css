@@ -122,18 +122,6 @@ body {
     text-align: left; 
     padding-left: 0px
 }
-#analisis{
-    margin-top: 10px; 
-    margin-bottom: 10px; 
-    text-align: left; 
-    padding-left: 0px
-}
-#puntuacion{
-    margin-top: 10px; 
-    margin-bottom: 10px; 
-    text-align: left; 
-    padding-left: 0px
-}
 .table thead tr th{
     text-align: center;
 }
@@ -219,15 +207,78 @@ body {
   position:relative;
   z-index:2;
 }
+
+
+/* RESULT.PHP LOADER */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid pink;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+#textWait{
+    text-align: center; 
+    font-size: 50px;
+    font-weight: 700;
+    font-family: cursive;
+    margin-top: 100px;
+}
+
+
+/* RESPONSIVE */
 @media screen and (max-width: 768px) {
   .jumbotron {
     padding-top:20px;
     padding-bottom:20px;
   }
 }
-
-
-/* RESPONSIVE */
 @media (min-width: 768px) {
     .carousel-caption p {
         margin-bottom: 20px;
@@ -264,12 +315,6 @@ body {
     #pautas {
         text-align: center;
     }
-    #analisis {
-        text-align: center;
-    }
-    #puntuacion {
-        text-align: center;
-    }
     #metodologia {
         text-align: center;
         padding-right: 50px; 
@@ -285,6 +330,9 @@ body {
     }
     #map{
         width: 100%;
+    }
+    #textWait{
+        margin-top: 300px;
     }
 }
 
@@ -309,3 +357,4 @@ body {
         margin-top: 120px;
   }
 }
+
