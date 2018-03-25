@@ -88,10 +88,15 @@
         <div class="row featurette">         
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="featurette-heading">Análisis</h2> 
+                    <h2 style="margin-bottom: 0px">Resultados</h2> 
                 </div>
             </div>
-        <div id="chartdiv"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 style="margin-bottom: 0px">Puntuación por categoría</h2> 
+                </div>
+            </div>
+            <div id="chartdiv"></div>
         </div>
         
         <hr class="featurette-divider">
@@ -102,7 +107,7 @@
         </div>
         <div class="row featurette"> 
               <div class="col-md-6"> 
-                  <div class="panel panel-warning" style="margin: 20px 20px 0px 20px">
+                  <div class="panel panel-info" style="margin: 20px 20px 0px 20px">
                       <div class="panel-heading" style="text-align: center; font-size: 20px; color:black">TEXTO</div>
                       <table class="table table-hover">
                           <tbody>
@@ -252,16 +257,17 @@
                   </div>
               </div>
            </div>
+	
     
         <!-- Footer -->    
-        <footer style="margin: 55px 0px 15px 15px; font-weight: bolder">
+        <footer style="text-align: left; margin: 55px 0px 15px 15px; font-weight: bolder">
             <p>&copy; Escuela Técnica Superior de Ingenieros Informáticos (UPM).</p>
         </footer>
-        </div>
-    
     </div>
-           <!-- Button back-to-top -->
-        <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    
+    
+    <!-- Button back-to-top -->
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
     
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
