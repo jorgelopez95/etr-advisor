@@ -11,8 +11,8 @@
         
         if (strpos($finfo->file($_FILES['file_uploaded']['tmp_name']),'text/html') === 0) {
           if (move_uploaded_file($file, $target_file)) {
-                header('Location:../analyzer/designAnalyzer.php$file=' . '../input/tmp/' . $_FILES["file_uploaded"]["tmp_name"]);
-                //header('Location:../result.php?file=' . $_FILES['file_uploaded']['name']);
+                //header('Location:../analyzer/designAnalyzer.php$file=' . '../input/tmp/' . $_FILES["file_uploaded"]["tmp_name"]);
+                header('Location:../result.php?file=' . $_FILES['file_uploaded']['name']);
           } else {
             $alerta = "** Ha habido un problema. Inténtelo de nuevo **";
             echo "<script>"; 

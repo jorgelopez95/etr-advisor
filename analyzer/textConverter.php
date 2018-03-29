@@ -1,12 +1,13 @@
 <?php
 
+        //$file = $_GET['file'];  $doc->loadHTMLFile($file);
+
 /**
  * In this funtion, the whole text is pulled from the html file
  **/
     function allText($text = array()){
         //HTML DOM structure
         $doc = new DOMDocument();
-        //$file = $_GET['file'];  $doc->loadHTMLFile($file);
         $doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
         $doc->saveHTML();        
 
@@ -41,6 +42,24 @@
         }
         $a = $doc->getElementsByTagName('a');
         foreach ($a as $textTag) {
+            array_push($text, $textTag->nodeValue);
+        }
+        return $text;
+    }
+
+    
+/**
+* In this funtion, only the text placed into <p> tags is taked into account
+**/
+    function getParagraphs($text = array()){
+        //HTML DOM structure
+        $doc = new DOMDocument();
+        $doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
+        $doc->saveHTML();        
+
+        //Searching tags that can include text
+        $p = $doc->getElementsByTagName('p');
+        foreach ($p as $textTag) {
             array_push($text, $textTag->nodeValue);
         }
         return $text;
