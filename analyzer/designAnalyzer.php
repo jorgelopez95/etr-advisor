@@ -7,7 +7,7 @@
     $doc->saveHTML();
     $xpath = new DOMXpath($doc);
 
-    //Function allText, located into textConverter.php file
+    //Function allText, located at textConverter.php file
     $allText = allText($textArray = array());
     
     
@@ -33,7 +33,7 @@
             $value = trim($value);
             
             if (!in_array($value, $accepted_fonts)) {
-                //echo "ERROR, fuente no aceptada";
+                echo "ERROR, fuente no aceptada: " . $value;
             }
         }
     }
@@ -202,7 +202,7 @@
         //Loop through each word. If we find a capital letter, counter is increased.  
         foreach($nWordsTag as $arr){
             if (ctype_upper($arr)){
-               echo "La cadena  consiste completamente de letras mayúsculas. <br>";
+               //echo "La cadena  consiste completamente de letras mayúsculas. <br>";
                $nWordsCapital++;
             } 
         }
