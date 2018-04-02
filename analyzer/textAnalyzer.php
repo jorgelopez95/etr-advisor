@@ -1,6 +1,6 @@
 <?php	
     include ("./textConverter.php");
-    include ("./morphologicalAnalyzer.php");
+    include ("./morphosyntacticAnalyzer.php");
     
     //HTML DOM structure
     $doc = new DOMDocument();
@@ -129,10 +129,12 @@
     }
 
 
-// 5) Número de palabras por frase (15 palabras máximo por frase)
-// 8) Uso de pronombres (2 máximo por frase)
-// 10) Dirección del mensaje (Se debe usar la segunda persona)
-// 11) Uso de forma pasiva (No usar forma pasiva de los verbos)
+/* 5) Número de palabras por frase (15 palabras máximo por frase) */
+/* 8) Uso de pronombres (2 máximo por frase) */
+/* 10) Dirección del mensaje (Se debe usar la segunda persona) */
+/* 11) Uso de forma pasiva (No usar forma pasiva de los verbos) */
+/* 12) Sujeto de la oración (Las oraciones deben tener sujeto) */
+/* 13) Composición de la oración (sujeto + verbo + complementos) */
 
     $secondPersonCounter=0;
     //First of all. Iterating the paragraphs
@@ -179,20 +181,22 @@
                 //echo 'ERROR: Existen frases con más de 15 palabras en la frase: '. $newArray[0] . '<br>';
             }
             
+            //MORPHOLOGIC
             $prepCounter = 0; //Only prepositions per sentence must be taken into account.
             $passiveCounter = 0;
             $passiveAux = array(); //For special treatments in passive voice
             $preps = array();
             $passives = array();
+            $syntax = array();
             
-            //Function getMorphological, located at morphologicalAnalyzer.php file
-            $arrayMorpho = array();
+            //Function getMorphological, located at morphosyntacticAnalyzer.php file
+            $arrayAnalysis = array();
             sleep(1); //Sleep 1 seconds cause of the API. (2 requests per second)
-            $arrayMorpho = getMorphological($newArray[0]);
-            //print_r($arrayMorpho); echo '<br>';
+            $arrayAnalysis = getAnalysis($newArray[0]);
+            //print_r($arrayAnalysis[0]); echo '<br>';
             
             //Loop through each word  
-            foreach($arrayMorpho as $key => $value){
+            foreach($arrayAnalysis[0] as $key => $value){
                 //Morphological analysis is given in the format: [word]->description1, description2, ...
                 $value = str_replace(',', '', $value);
                 
@@ -211,27 +215,48 @@
                     array_push($passives, $key);
                     $passiveCounter++;
                 }
+                /* [REGLA 12] */
+                if(strstr($value, 'sujeto')){
+                    array_push($syntax, 'sujeto');
+                }
                 /* Special treatments (se + verb) */
+                if(strstr($value, 'nombre')){
+                    array_push($passiveAux, 'nombre');
+                }
                 if(strstr($key, 'se')){
                     array_push($passiveAux, $key);
                 }
-                if(strstr($value, 'verbo') && in_array('se', $passiveAux)){
+                if(strstr($value, 'verbo') && in_array('se', $passiveAux) && !in_array('nombre', $passiveAux)){
                     $passiveCounter++;
                     unset($passiveAux);
                 }
             }
+            /* [REGLA 8] */
             if((int)$prepCounter > 2){
                 $prepsFound=implode(", ", $preps);
                 //echo 'ERROR: Las frases no pueden contener más de 2 preposiciones. La frase ['.$newArray[0].'] tiene las siguientes: ('.$prepsFound .')';
             }
-            //Si no encuentra 2º persona en los textos, está mal
+            /* [REGLA 10] */
         	if((int)$secondPersonCounter==0){
         	    //echo 'ERROR: No se encuentran expresiones en segunda persona en la frase ['.$newArray[0].']';
-        	}             
+        	}            
+            /* [REGLA 11] */
             if((int)$passiveCounter > 0){
                 $passivesFound=implode(", ", $passives);
             	//echo 'ERROR: Intenta no usar la voz pasiva. Como en la frase: ['.$newArray[0].']';
             }
+            
+            // SYNTACTIC
+            /* [REGLA 12] */
+            if(!($arrayAnalysis[1][0]=='iof_isSubject')){
+                //echo 'ERROR: Las oraciones deben tener sujeto. Error en la frase: ['.$newArray[0].']';echo '<br>';
+            }
+            /* [REGLA 13] */
+            //Subject + verb + complements
+            if(!($arrayAnalysis[1][0]=='iof_isSubject') && (!in_array('iof_isDirectObject', $arrayAnalysis) || !in_array('iof_isComplement', $arrayAnalysis))){
+                //echo 'ERROR: Las oraciones deben tener la estructura: sujeto+verbo+complementos. Error en la frase: ['.$newArray[0].']'; echo '<br>';
+            }
+                
             //Removing processed sentence
             $paragraphs[$i] = iconv_substr($paragraphs[$i], (int)$arrayEnd[$k], (int)strlen($paragraphs[$i]));
         }
@@ -257,7 +282,7 @@
 // ** 6) Cantidad de texto por página (75 palabras por diapositiva)
     
     
-// 7) Formato de las fechas (13 de enero del 2017 en lugar de 13/01/2017)
+/* 7) Formato de las fechas (13 de enero del 2017 en lugar de 13/01/2017) */
     
     //Iteration over the <p> returned by "getParagraphs" function
     $paragraphs = getParagraphs($pArray = array()); 
@@ -276,7 +301,7 @@
     }
 
     
-// 9) Números romanos
+/* 9) Números romanos */
 
     //Iteration over the <p> returned by "getParagraphs" function
     $paragraphs = getParagraphs($pArray = array()); 
@@ -289,12 +314,4 @@
             //echo "ERROR: no puede haber números romanos: " . $numeralsFound;
         }
     }
-  
-    
-// 12) Sujeto de la oración (Las oraciones deben tener sujeto)
-
- 
-// 13) Composición de la oración (sujeto + verbo + complementos)
-           
-           
 ?>

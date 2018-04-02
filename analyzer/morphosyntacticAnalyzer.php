@@ -11,8 +11,10 @@
      * @copyright  Copyright (c) 2015, MeaningCloud LLC. All rights reserved.
      */
    
-    function getMorphological ($sentence) {
+    function getAnalysis ($sentence) {
         $result = array();
+        $morphoArray = array();
+        $syntaxArray = array();
         
         // We define the variables needed to call the API
         $api = 'http://api.meaningcloud.com/parser-2.0';
@@ -32,19 +34,24 @@
           }
         }
       
-       // Show the morphological analyses
+        // Show the morphological analyses
         foreach($morpho as $m){
           if(isset($m['analysis_list'])) {
-              //echo $m['analysis_list'][0]['original_form']."\n";
             foreach($m['analysis_list'] as $k=>$a)
-             //echo "\t".$a['tag'].': '.$a['tag_info']."\n";
-             $result[$m['analysis_list'][0]['original_form']] = $a['tag_info'];
+             $morphoArray[$m['analysis_list'][0]['original_form']] = $a['tag_info'];
           }
         }
+        
+        // We search in the tag syntactic_tree_relation_list
+        foreach($json['token_list'][0]['token_list'][0]['token_list'][1]['syntactic_tree_relation_list'] as $item){
+            array_push($syntaxArray, $item[type]); 
+        }
+        array_push($result, $morphoArray);
+        array_push($result, $syntaxArray);
         return $result;
     }
     
-    
+ 
     // Auxiliary function to make a post request
     function sendPost($api, $key, $lang, $txt) {
         $data = http_build_query(array('key'=>$key,
