@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if ($_SERVER["REQUEST_METHOD"] == "POST")  { 
         extract($_POST);
         
@@ -11,9 +12,10 @@
         
         if (strpos($finfo->file($_FILES['file_uploaded']['tmp_name']),'text/html') === 0) {
           if (move_uploaded_file($file, $target_file)) {
-                //header('Location:../analyzer/designAnalyzer.php$file=' . '../input/tmp/' . $_FILES["file_uploaded"]["tmp_name"]);
-                header('Location:../result.php?file=' . $_FILES['file_uploaded']['name']);
-          } else {
+            $_SESSION['file_uploaded'] = $_FILES['file_uploaded']['tmp_name'];
+            header('Location:../result.php?file=' . $_FILES['file_uploaded']['name']);
+          } 
+          else {
             $alerta = "** Ha habido un problema. Inténtelo de nuevo **";
             echo "<script>"; 
                 echo "if(alert('$alerta'));";  

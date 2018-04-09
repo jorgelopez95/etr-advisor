@@ -1,3 +1,6 @@
+<?php
+   if(!isset($_SESSION)){ session_start(); } 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,6 +92,20 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 style="margin-bottom: 0px">Resultados</h2> 
+                    <?php
+                        include_once ("./analyzer/textAnalyzer.php");
+                        include_once ("./analyzer/designAnalyzer.php");
+                        $textResult = textAnalyzer();
+                        $designResult = designAnalyzer();
+                        
+                        //Bucles recorriendo estos arrays y pintando los resultados
+                        print_r($designResult);
+                        echo '<br>';echo '<br>';
+                        print_r($textResult);
+                        
+                        //echo "<h5>$designResult</h5> <br>>";
+                        //Destruir session
+                    ?>
                 </div>
             </div>
             <div class="row">

@@ -1,16 +1,21 @@
 <?php
-
-        //$file = $_GET['file'];  $doc->loadHTMLFile($file);
+if(!isset($_SESSION)){ session_start(); } 
 
 /**
  * In this funtion, the whole text is pulled from the html file
  **/
-    function allText($text = array()){
+    function allText(){
         //HTML DOM structure
+        $file_uploaded = $_SESSION['file_uploaded'];
+        $file_uploaded = './input' . $file_uploaded . '.html';
+        
         $doc = new DOMDocument();
-        $doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
+        //$doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
+        $doc->loadHTMLFile($file_uploaded);
         $doc->saveHTML();        
 
+        $text = array();
+        
         //Searching tags that can include text
         $h1 = $doc->getElementsByTagName('h1');
         foreach ($h1 as $textTag) {
@@ -54,7 +59,9 @@
     function getParagraphs($text = array()){
         //HTML DOM structure
         $doc = new DOMDocument();
-        $doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
+        $file_uploaded = $_SESSION['file_uploaded'];
+        $file_uploaded = './input' . $file_uploaded . '.html';
+        $doc->loadHTMLFile($file_uploaded);
         $doc->saveHTML();        
 
         //Searching tags that can include text

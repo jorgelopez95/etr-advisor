@@ -1,16 +1,26 @@
-<?php	
-    include ("./textConverter.php");
-    include ("./morphosyntacticAnalyzer.php");
+<?php
+	
+if(!isset($_SESSION)){ session_start(); } 
+
+function textAnalyzer(){
+    
+    include_once ("./analyzer/textConverter.php");
+    include_once ("./analyzer/morphosyntacticAnalyzer.php");
+    $file_uploaded = $_SESSION['file_uploaded'];
+    $file_uploaded = './input' . $file_uploaded . '.html';
     
     //HTML DOM structure
     $doc = new DOMDocument();
-    $doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
+    //$doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
+    $doc->loadHTMLFile($file_uploaded);
     $doc->saveHTML();
     $xpath = new DOMXpath($doc);
 
+    $textAnalyzerArray = array();
+ 
     //Function getParagraphs, located at textConverter.php file
     $paragraphs = getParagraphs($pArray = array());
-
+   
 
 /* 1) Longitud de las líneas (60 caracteres frase) */
 
@@ -58,16 +68,19 @@
             }
             
             //Sentences can't contain more than 60 characters
-            if ($subtraction>60){ 
+            if ((int)$subtraction>60){ 
+                $textAnalyzerArray['P1'] = 'El párrafo ['.$paragraphs[$i]. '] contiene frases de más de 60 caracteres. Concretamente posee '.$subtraction.'.';
                  //echo "ERROR: las frases no pueden contener más de 60 caracteres" . '<br>';
             }
         }
         $i++;
     }
+    
 
     
 /* 2) Números grandes (100000 es el máximo) */
 
+    $P2_errors = array();
     //Iteration over the <p> returned by "getParagraphs" function
     $i=0;
     foreach ($paragraphs as $words) {
@@ -77,15 +90,22 @@
         //Loop through each word. If we find a number, check if it's greater than 100.000  
         foreach($words as $word){
             if (is_numeric($word) && (int)$word>100000){
+                array_push($P2_errors, $word);
                //echo 'ERROR: El número' . $word. 'es muy grande';
             } 
         }
         $i++;
     }
+    if (!empty($P2_errors)){
+        $numberError = implode(", ", $P2_errors);
+        $textAnalyzerArray['P2'] = 'Tu texto contiene algún numero ('.$numberError.') mayor que 100.000';
+    }
+    unset($P2_errors);
 
 
 /* 3) Caracteres especiales */
 
+    $P3_errors = array();
     //Paragraphs can't contain any of these special characters
     $specialCharacters = array("|", "#", "~", "%", "&", "¬", "<", ">", "\\");
     $i=0;
@@ -99,15 +119,22 @@
             $character = explode("-", $value);
             $character = trim($character[0]);
             if (in_array($character, $specialCharacters)) {
+                array_push($P3_errors, $character);
                 //echo "ERROR: No puede haber caracteres especiales como: " . $character;
             }
         }
         $i++;
     }
-
+    if (!empty($P3_errors)){
+        $specialError = implode(", ", $P3_errors);
+        $textAnalyzerArray['P3'] = 'No puede haber caracteres especiales como '.$specialError.' .';
+    }
+    unset($P3_errors);
+    
     
 /* 4) Caracteres de orden ("º", "ª") */
 
+    $P4_errors = array();
     //Paragraphs can't contain order characters
     $orderCharacters = array("º", "ª");
     $i=0;
@@ -122,11 +149,17 @@
             $character = trim($character[0]);
             
             if (in_array($character, $orderCharacters)) {
+                array_push($P4_errors, $character);
                 //echo "ERROR: No puede haber caracteres de orden (º/ª)";
             }
         }
         $i++;
     }
+    if (!empty($P4_errors)){
+        $orderError = implode(", ", $P4_errors);
+        $textAnalyzerArray['P4'] = 'El texto de la diapositiva no debe incluir caracteres de orden como '.$orderError.' .';
+    }
+    unset($P4_errors);
 
 
 /* 5) Número de palabras por frase (15 palabras máximo por frase) */
@@ -135,6 +168,8 @@
 /* 11) Uso de forma pasiva (No usar forma pasiva de los verbos) */
 /* 12) Sujeto de la oración (Las oraciones deben tener sujeto) */
 /* 13) Composición de la oración (sujeto + verbo + complementos) */
+    
+    $P5_errors = array(); $P5_errors = array(); $P8_errors = array(); $P11_errors = array(); $P12_errors = array(); $P13_errors = array();
 
     $secondPersonCounter=0;
     //First of all. Iterating the paragraphs
@@ -234,26 +269,31 @@
             /* [REGLA 8] */
             if((int)$prepCounter > 2){
                 $prepsFound=implode(", ", $preps);
+                $textAnalyzerArray['P8'] = 'Las frases no pueden contener más de 2 preposiciones. La frase ['.$newArray[0].'] tiene las siguientes: ('.$prepsFound .')';
                 //echo 'ERROR: Las frases no pueden contener más de 2 preposiciones. La frase ['.$newArray[0].'] tiene las siguientes: ('.$prepsFound .')';
             }
             /* [REGLA 10] */
         	if((int)$secondPersonCounter==0){
+                $textAnalyzerArray['P10'] = 'No se encuentran expresiones en segunda persona en la frase ['.$newArray[0].']';
         	    //echo 'ERROR: No se encuentran expresiones en segunda persona en la frase ['.$newArray[0].']';
         	}            
             /* [REGLA 11] */
             if((int)$passiveCounter > 0){
                 $passivesFound=implode(", ", $passives);
+                $textAnalyzerArray['P11'] = 'Intenta no usar la voz pasiva. Como en la frase: ['.$newArray[0].']';
             	//echo 'ERROR: Intenta no usar la voz pasiva. Como en la frase: ['.$newArray[0].']';
             }
             
             // SYNTACTIC
             /* [REGLA 12] */
             if(!($arrayAnalysis[1][0]=='iof_isSubject')){
+                $textAnalyzerArray['P12'] = 'Las oraciones deben tener sujeto. Error en la frase: ['.$newArray[0].']';
                 //echo 'ERROR: Las oraciones deben tener sujeto. Error en la frase: ['.$newArray[0].']';echo '<br>';
             }
             /* [REGLA 13] */
             //Subject + verb + complements
             if(!($arrayAnalysis[1][0]=='iof_isSubject') && (!in_array('iof_isDirectObject', $arrayAnalysis) || !in_array('iof_isComplement', $arrayAnalysis))){
+                $textAnalyzerArray['P13'] = 'Las oraciones deben tener la estructura: "sujeto + verbo + complementos". Error en la frase: ['.$newArray[0].']';
                 //echo 'ERROR: Las oraciones deben tener la estructura: sujeto+verbo+complementos. Error en la frase: ['.$newArray[0].']'; echo '<br>';
             }
                 
@@ -261,22 +301,8 @@
             $paragraphs[$i] = iconv_substr($paragraphs[$i], (int)$arrayEnd[$k], (int)strlen($paragraphs[$i]));
         }
     }
+    
  
-	
-    /**
-     *This function is similar to str_split, but can process unicode characters.
-     **/
-    function str_split_unicode($str, $l = 0) {
-        if ($l > 0) {
-            $ret = array();
-            $len = mb_strlen($str, "UTF-8");
-            for ($i = 0; $i < $len; $i += $l) {
-                $ret[] = mb_substr($str, $i, $l, "UTF-8");
-            }
-                return $ret;
-            }
-            return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
-    }
 
 
 // ** 6) Cantidad de texto por página (75 palabras por diapositiva)
@@ -296,6 +322,7 @@
         ){
             //Converting array of dates to string
             $datesFound=implode(", ", $dates[0]);
+            $textAnalyzerArray['P7'] = 'Las siguientes fechas deberían tener un formato del estilo de "28 de marzo del 2018": '.$datesFound.'.';
             //echo "ERROR: las siguientes fechas deberían tener un formato del estilo de '<em>28 de marzo del 2018</em>':" . '<br>' . $datesFound. '<br>';
         }
     }
@@ -311,7 +338,28 @@
         if(preg_match_all("/\b(?:X?L?(?:X{0,3}(?:IX|IV|V|V?I{1,3})|IX|X{1,3})|XL|L)\b/", $paragraphs[$i], $roman)){
             //Converting array of Roman numerals to string
             $numeralsFound=implode(", ", $roman[0]);
+            $textAnalyzerArray['P9'] = 'El texto no puede contener números romanos: '.$numeralsFound.'.';
             //echo "ERROR: no puede haber números romanos: " . $numeralsFound;
         }
     }
+    
+    
+    return $textAnalyzerArray;
+}
+
+    /**
+     *This function is similar to str_split, but can process unicode characters.
+     **/
+    function str_split_unicode($str, $l = 0) {
+        if ($l > 0) {
+            $ret = array();
+            $len = mb_strlen($str, "UTF-8");
+            for ($i = 0; $i < $len; $i += $l) {
+                $ret[] = mb_substr($str, $i, $l, "UTF-8");
+            }
+                return $ret;
+            }
+            return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
+    }
+
 ?>

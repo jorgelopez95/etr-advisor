@@ -11,6 +11,8 @@
      * @copyright  Copyright (c) 2015, MeaningCloud LLC. All rights reserved.
      */
    
+   if(!isset($_SESSION)){ session_start(); } 
+   
     function getAnalysis ($sentence) {
         $result = array();
         $morphoArray = array();
