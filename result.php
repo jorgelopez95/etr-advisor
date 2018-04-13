@@ -1,5 +1,11 @@
 <?php
-   if(!isset($_SESSION)){ session_start(); } 
+   if(!isset($_SESSION)){ 
+       session_start();
+        //include_once ("./analyzer/textAnalyzer.php");
+        include_once ("./analyzer/designAnalyzer.php");
+        //$textResult = textAnalyzer();
+        $designResult = designAnalyzer();
+   } 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,15 +77,29 @@
         </div>
         <div class="row featurette" class="row">
             <h4>Has obtenido una valoración de:</h4> 
-            <h2 style="font-size: 50px; font-weight: 500;">90/100</h2>
+            <h2 style="font-size: 50px; font-weight: 500;">
+                <?php $punt=count($designResult);
+                //+count($textResult);
+                $punt=round(4.54545454545*$punt);
+                echo $punt."/100"; ?>
+            </h2>
             <div class="progress" style="margin-left:20%; margin-top: 2% ;width: 70%;">
-              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 89%"></div>
+              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+              style=<?php echo 'width:' .$punt.'%'; ?> ></div>
             </div>
-            <?php
-            $var = $_GET['file'];
-    
-            echo "<img src='../images/html_file.png'> <h4>$var</h4></img>"
-            ?>
+            <?php $var = $_GET['file']; ?>
+            
+            <img src='../images/html_file.png'> <h4> <?php echo "$var"; ?> </h4></img>
+                <div class="info">
+                    <img src="./images/folder.jpg" alt="info" style="margin-left: 8px">
+                        <span class="infoFile">
+                            <?php
+                                $file_uploaded = $_SESSION['file_uploaded'];
+                                $file_uploaded = './input' . $file_uploaded . '.html';
+                                echo file_get_contents($file_uploaded, true); 
+                            ?>
+                        </span> 
+                </div>
         </div>
       
         <hr class="featurette-divider">
@@ -91,20 +111,58 @@
         <div class="row featurette">         
             <div class="row">
                 <div class="col-md-12">
-                    <h2 style="margin-bottom: 0px">Resultados</h2> 
+                    <h2 style="margin-bottom: 15px">Resultados</h2> 
                     <?php
-                        include_once ("./analyzer/textAnalyzer.php");
-                        include_once ("./analyzer/designAnalyzer.php");
-                        $textResult = textAnalyzer();
-                        $designResult = designAnalyzer();
-                        
+                     
                         //Bucles recorriendo estos arrays y pintando los resultados
-                        print_r($designResult);
-                        echo '<br>';echo '<br>';
-                        print_r($textResult);
+                        /*print_r($designResult);
+                        echo '<br>';echo '<br>';*/
+                        $pautasDesign = array();
+                        $pautasDesign['P1'] = "La fuente del texto pertenece a los estilos aceptados";
+                        $pautasDesign['P2'] = "El tamaño del texto tiene que ser como mínimo 12 y como máximo 16";
+                        $pautasDesign['P3'] = "No existe texto en cursiva";
+                        $pautasDesign['P4'] = "No existen más de un % de palabras en negrita";
+                        $pautasDesign['P5'] = "No existen más de un % de palabras subrayadas";
+                        $pautasDesign['P6'] = "No existen textos con sombreado";
+                        $pautasDesign['P7'] = "No existen más de un % de palabras en mayúsculas";
+                        $pautasDesign['P8'] = "Color de fuente negro";
+                        $pautasDesign['P9'] = "Color de fondo blanco sólido";
+                        $pautasDesign['P10'] = "Cantidad de palabras en la diapositiva no supera el límite establecido";
+                    ?>   
+                      
+                        <div class='panel-group'>
+                        <?php
+                        $i=0;
+                        foreach($pautasDesign as $key => $value){
+                            if(array_key_exists ($key, $designResult)){ ?>
+                                 <div class='panel panel-danger'>
+                                    <div class='panel-heading'>
+                                        <h4 class='panel-title'><a data-toggle='collapse' <?php echo "href=#$key >"; echo $pautasDesign[$key]; ?>
+                                            <span class="glyphicon glyphicon-alert" style="margin-left: 10px; color: salmon"></span>
+                                        </a></h4>
+                                    </div>
+                                    <div <?php echo "id=$key "; ?> class='panel-collapse collapse'>
+                                      <div class='panel-body'><?php echo $designResult[$key]; ?></div>
+                                    </div>
+                                  </div>
+                            <?php } else { ?>
+                                <div class='panel panel-success'>
+                                    <div class='panel-heading'>
+                                        <h4 class='panel-title'><?php echo $pautasDesign[$key]; ?></h4>
+                                    </div>
+                                </div>
+                           <?php }
+                            $i++;
+                        }
+                        ?>
+                        </div>
+
+                    <?php
+                        //print_r($textResult);
                         
-                        //echo "<h5>$designResult</h5> <br>>";
+
                         //Destruir session
+                        //session_destroy();
                     ?>
                 </div>
             </div>
@@ -130,27 +188,27 @@
                           <tbody>
                               <tr>
                                   <td>El tamaño de las líneas debe de ser inferior a 60 caracteres</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Evitar el uso de números grandes</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Evitar el uso de caracteres especiales</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Evitar el uso de caracteres de orden</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Evitar el uso de más de 15 palabras por frase</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Evitar escribir más de 75 palabras por diapositiva</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Escribir las fechas al completo
@@ -166,31 +224,31 @@
                                           </span> 
                                   </div>
                                       </td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Evitar abusar de los pronombres</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>No utilizar números romanos</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Dirigir el mensaje a la audiencia usando la 2ª persona</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>No utilizar la forma pasiva</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Las oraciones han de tener sujeto</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Las oraciones deben seguir el orden de: sujeto + verbo + complementos</td>
-                                  <td>3,85 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                 <td></td>
@@ -227,43 +285,43 @@
                                           </span> 
                                       </div>
                                   </td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>El tamaño del texto tiene que ser como mínimo 12 y como máximo 16</td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>No existe texto en cursiva</td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>No existen más de un % de palabras en negrita</td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>No existen más de un % de palabras subrayadas</td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>No existen textos con sombreado</td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>No existen más de un % de palabras en mayúsculas</td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Color de fuente negro</td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Color de fondo blanco sólido</td>
-                                  <td>5 puntos</td>
+                                  <td>4.54 puntos</td>
                               </tr>
                               <tr>
                                   <td>Cantidad de palabras en la diapositiva no supera el límite establecido</td>
-                                  <td>5 puntos</td> 
+                                  <td>4.54 puntos</td> 
                               </tr>
                               <tr>
                                 <td></td>
