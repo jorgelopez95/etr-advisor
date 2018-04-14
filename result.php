@@ -1,7 +1,7 @@
 <?php
    if(!isset($_SESSION)){ 
        session_start();
-        //include_once ("./analyzer/textAnalyzer.php");
+        include_once ("./analyzer/textAnalyzer.php");
         include_once ("./analyzer/designAnalyzer.php");
         //$textResult = textAnalyzer();
         $designResult = designAnalyzer();
@@ -75,11 +75,10 @@
         <div class="well" id="puntuacion" style="margin-top: 0px">
                 <h3 style="text-align:center; font-size: 40px; font-style: italic">Puntuación</h3>
         </div>
-        <div class="row featurette" class="row">
+        <div class="row featurette" id="score">
             <h4>Has obtenido una valoración de:</h4> 
             <h2 style="font-size: 50px; font-weight: 500;">
-                <?php $punt=count($designResult);
-                //+count($textResult);
+                <?php $punt=count($designResult)+count($textResult);
                 $punt=round(4.54545454545*$punt);
                 echo $punt."/100"; ?>
             </h2>
@@ -110,13 +109,15 @@
         </div>
         <div class="row featurette">         
             <div class="row">
-                <div class="col-md-12">
-                    <h2 style="margin-bottom: 15px">Resultados</h2> 
+                <div class="col-12" id="resultados">
+                    <h2 style="margin-bottom: 25px; font-size: 34px;">Resultados</h2> 
+                    <h5 style="font-size: 20px; font-family: Times New Roman, Times, serif; margin: 20px; color: midnightblue;"> 
+                        <?php $incorrects=count($designResult)+count($textResult);
+                              $corrects= 22 - $incorrects;  
+                              echo "$corrects correctos / $incorrects incorrectos"; ?>
+                    </h5>
                     <?php
-                     
                         //Bucles recorriendo estos arrays y pintando los resultados
-                        /*print_r($designResult);
-                        echo '<br>';echo '<br>';*/
                         $pautasDesign = array();
                         $pautasDesign['P1'] = "La fuente del texto pertenece a los estilos aceptados";
                         $pautasDesign['P2'] = "El tamaño del texto tiene que ser como mínimo 12 y como máximo 16";
@@ -128,8 +129,21 @@
                         $pautasDesign['P8'] = "Color de fuente negro";
                         $pautasDesign['P9'] = "Color de fondo blanco sólido";
                         $pautasDesign['P10'] = "Cantidad de palabras en la diapositiva no supera el límite establecido";
+                        
+                        $pautasText = array();
+                        $pautasText['P1'] = "El tamaño de las líneas debe de ser inferior a 60 caracteres";
+                        $pautasText['P2'] = "Evitar el uso de números grandes";
+                        $pautasText['P3'] = "Evitar el uso de caracteres especiales";
+                        $pautasText['P4'] = "Evitar el uso de caracteres de orden";
+                        $pautasText['P5'] = "Evitar el uso de más de 15 palabras por frase";
+                        $pautasText['P7'] = "Escribir las fechas al completo";
+                        $pautasText['P8'] = "Evitar abusar de los pronombres";
+                        $pautasText['P9'] = "No utilizar números romanos";
+                        $pautasText['P10'] = "Dirigir el mensaje a la audiencia usando la 2ª persona";
+                        $pautasText['P11'] = "No utilizar la forma pasiva";
+                        $pautasText['P12'] = "Las oraciones han de tener sujeto";
+                        $pautasText['P13'] = "Las oraciones deben seguir el orden de: sujeto + verbo + complementos";
                     ?>   
-                      
                         <div class='panel-group'>
                         <?php
                         $i=0;
@@ -142,7 +156,7 @@
                                         </a></h4>
                                     </div>
                                     <div <?php echo "id=$key "; ?> class='panel-collapse collapse'>
-                                      <div class='panel-body'><?php echo $designResult[$key]; ?></div>
+                                      <div class='panel-body' style="font-size: 16px"><?php echo $designResult[$key]; ?></div>
                                     </div>
                                   </div>
                             <?php } else { ?>
@@ -155,23 +169,41 @@
                             $i++;
                         }
                         ?>
+                        <?php
+                        $j=0;
+                        foreach($pautasText as $key => $value){
+                            if(array_key_exists ($key, $textResult)){ ?>
+                                 <div class='panel panel-danger'>
+                                    <div class='panel-heading'>
+                                        <h4 class='panel-title'><a data-toggle='collapse' <?php echo "href=#$key >"; echo $pautasText[$key]; ?>
+                                            <span class="glyphicon glyphicon-alert" style="margin-left: 10px; color: salmon"></span>
+                                        </a></h4>
+                                    </div>
+                                    <div <?php echo "id=$key "; ?> class='panel-collapse collapse'>
+                                      <div class='panel-body'><?php echo $textResult[$key]; ?></div>
+                                    </div>
+                                  </div>
+                            <?php } else { ?>
+                                <div class='panel panel-success'>
+                                    <div class='panel-heading'>
+                                        <h4 class='panel-title'><?php echo $pautasText[$key]; ?></h4>
+                                    </div>
+                                </div>
+                           <?php }
+                            $j++;
+                        }
+                        ?>
                         </div>
-
-                    <?php
-                        //print_r($textResult);
-                        
-
-                        //Destruir session
-                        //session_destroy();
-                    ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 style="margin-bottom: 0px">Puntuación por categoría</h2> 
+            <div class="row" id="categoria">
+                <div class="col-12">
+                    <h2 style="margin-bottom: 0px; margin-top: 35px">Puntuación por categoría</h2>
+                    <h5 style="font-size: 16px;margin-top: 15px;">El siguiente gráfico muestra el número de aciertos por categoría</h2>  
+                    <div id="chartdiv"></div>
                 </div>
             </div>
-            <div id="chartdiv"></div>
+
         </div>
         
         <hr class="featurette-divider">
@@ -250,10 +282,10 @@
                                   <td>Las oraciones deben seguir el orden de: sujeto + verbo + complementos</td>
                                   <td>4.54 puntos</td>
                               </tr>
-                              <tr>
+                              <!--tr>
                                 <td></td>
                                   <td style="font-weight: bolder">50 puntos</td>
-                              </tr>
+                              </tr-->
                           </tbody>
                       </table>
                   </div>
@@ -323,10 +355,10 @@
                                   <td>Cantidad de palabras en la diapositiva no supera el límite establecido</td>
                                   <td>4.54 puntos</td> 
                               </tr>
-                              <tr>
+                              <!--tr>
                                 <td></td>
                                   <td style="font-weight: bolder">50 puntos</td>
-                              </tr>
+                              </tr-->
                           </tbody>
                       </table>
                   </div>
@@ -351,9 +383,40 @@
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/pie.js"></script>
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-    <script src="./scripts/chart.js"></script>
+    <script>
+        $(document).ready(function(){  
+    myVar = setTimeout(showPage, 3000);
+    var chart = AmCharts.makeChart("chartdiv", {
+        "type": "pie",
+        "theme": "light",
+        "innerRadius": "40%",
+        "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
+        "dataProvider": [{
+            "type": "Texto",
+            "score": '<?php $text=12-count($textResult); echo $text; ?>'
+        }, {
+            "type": "Maquetación",
+            "score": '<?php $design=10-count($designResult); echo $design; ?>'
+        }],
+        "balloonText": "[[value]]",
+        "valueField": "score",
+        "titleField": "type",
+        "balloon": {
+            "drop": true,
+            "adjustBorderColor": false,
+            "color": "#FFFFFF",
+            "fontSize": 16
+        },
+        "export": {
+            "enabled": false
+        }
+    });
+    
+});
+    </script>
     <script src="./scripts/top.js"></script>
     
 </body>
     
 </html>
+<?php //session_destroy(); ?>

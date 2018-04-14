@@ -7,10 +7,10 @@ $(document).ready(function(){
         "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
         "dataProvider": [{
             "type": "Texto",
-            "score": 80
+            "score": '<?php echo count($textResult);?>'
         }, {
             "type": "Maquetación",
-            "score": 20
+            "score": '<?php echo count($designResult);?>'
         }],
         "balloonText": "[[value]]",
         "valueField": "score",

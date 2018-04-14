@@ -348,7 +348,47 @@ body {
         width: 100%;
     }
     #textWait{
-        margin-top: 300px;
+        margin-top: 0px;
+        margin-top: 30px;
+        font-size: 50px; 
+    }
+    #loader{
+        margin-top: 120px;
+        margin-left: -15%;
+    }
+    .panel-group{
+       margin-left: 10%; 
+    }
+    .panel.panel-info{
+        margin: 20px 0px 0px 30px !important;
+    }
+    .panel.panel-warning{
+        margin: 20px 0px 0px 30px !important;
+    }
+    .info .infoFile {
+        width: 600%;
+        left: -250%;
+    }
+    #resultados{
+        margin-left: 10%;
+    }
+    #resultados .h2{
+        padding-left: 10%;
+    }
+    #resultados .h5{
+        padding-left: 10%;
+    }
+    #categoria{
+        margin: 0px 3% 0px 10%;
+        width: 90%;
+    }
+    #score{
+        margin-left: 1px;
+    }
+    .progress{
+        margin-left: 10% !important;
+        margin-top: 2% !important;
+        width: 80% !important;
     }
 }
 

@@ -177,157 +177,157 @@
                   <h2 class="featurette-heading" id="pautas">Pautas</h2> 
               </div>
           </div>
-          <div class="col-md-6"> 
-              <div class="panel panel-warning" style="margin: 20px 20px 0px 20px">
-                  <div class="panel-heading" style="text-align: center; font-size: 20px; color:black">TEXTO</div>
-                  <table class="table table-hover">
-                      <tbody>
-                          <tr>
-                              <td>El tamaño de las líneas debe de ser inferior a 60 caracteres</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Evitar el uso de números grandes</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Evitar el uso de caracteres especiales</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Evitar el uso de caracteres de orden</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Evitar el uso de más de 15 palabras por frase</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Evitar escribir más de 75 palabras por diapositiva</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Escribir las fechas al completo
-                                  <div class="info">
-                                      <img  src="./images/info.png" alt="info" style="margin-left: 8px">
-                                      <span class="infoText2">
-                                          <dl>
-                                              <dt><span class="glyphicon glyphicon-ok"></span></dt>
-                                              <dd>22 de junio del 2018</dd>
-                                              <dt><span class="glyphicon glyphicon-remove"></span></dt>
-                                              <dd>22/06/2018</dd>   
-                                          </dl>
-                                      </span> 
-                              </div>
-                                  </td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Evitar abusar de los pronombres</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>No utilizar números romanos</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Dirigir el mensaje a la audiencia usando la 2ª persona</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>No utilizar la forma pasiva</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Las oraciones han de tener sujeto</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Las oraciones deben seguir el orden de: sujeto + verbo + complementos</td>
-                              <td>7,7 puntos</td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                              <td style="font-weight: bolder">100 puntos</td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-          <div class="col-md-6">  
-              <div class="panel panel-warning" style="margin: 20px 20px 0px 20px">
-                  <div class="panel-heading" style="text-align: center; font-size: 20px; color: black">MAQUETACIÓN</div>
-                  <table class="table table-hover">
-                      <tbody>
-                          <tr>
-                              <td>
-                                  La fuente del texto pertenece a los estilos aceptados
-                                  <div class="info">
-                                      <img src="./images/info.png" alt="info" style="margin-left: 8px">
-                                      <span class="infoText">
-                                          <ul>
-                                            <li>Arial</li>
-                                            <li>Calibri</li>
-                                            <li>Candara</li>
-                                            <li>Corbel</li>
-                                            <li>Gill Sans</li>
-                                            <li>Helvética</li>
-                                            <li>Myriad</li>
-                                            <li>Segoe</li>
-                                            <li>Tahoma</li>
-                                            <li>Tiresias</li>
-                                            <li>Verdana</li>
-                                          </ul>
-                                      </span> 
+              <div class="col-md-6"> 
+                  <div class="panel panel-info" style="margin: 20px 20px 0px 20px">
+                      <div class="panel-heading" style="text-align: center; font-size: 20px; color:black">TEXTO</div>
+                      <table class="table table-hover">
+                          <tbody>
+                              <tr>
+                                  <td>El tamaño de las líneas debe de ser inferior a 60 caracteres</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Evitar el uso de números grandes</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Evitar el uso de caracteres especiales</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Evitar el uso de caracteres de orden</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Evitar el uso de más de 15 palabras por frase</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Evitar escribir más de 75 palabras por diapositiva</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Escribir las fechas al completo
+                                      <div class="info">
+                                          <img  src="./images/info.png" alt="info" style="margin-left: 8px">
+                                          <span class="infoText2">
+                                              <dl>
+                                                  <dt><span class="glyphicon glyphicon-ok"></span></dt>
+                                                  <dd>22 de junio del 2018</dd>
+                                                  <dt><span class="glyphicon glyphicon-remove"></span></dt>
+                                                  <dd>22/06/2018</dd>   
+                                              </dl>
+                                          </span> 
                                   </div>
-                              </td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>El tamaño del texto tiene que ser como mínimo 12 y como máximo 16</td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>No existe texto en cursiva</td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>No existen más de un % de palabras en negrita</td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>No existen más de un % de palabras subrayadas</td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>No existen textos con sombreado</td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>No existen más de un % de palabras en mayúsculas</td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Color de fuente negro</td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Color de fondo blanco sólido</td>
-                              <td>10 puntos</td>
-                          </tr>
-                          <tr>
-                              <td>Cantidad de palabras en la diapositiva no supera el límite establecido</td>
-                              <td>10 puntos</td> 
-                          </tr>
-                          <tr>
-                            <td></td>
-                              <td style="font-weight: bolder">100 puntos</td>
-                          </tr>
-                      </tbody>
-                  </table>
+                                      </td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Evitar abusar de los pronombres</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No utilizar números romanos</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Dirigir el mensaje a la audiencia usando la 2ª persona</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No utilizar la forma pasiva</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Las oraciones han de tener sujeto</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Las oraciones deben seguir el orden de: sujeto + verbo + complementos</td>
+                                  
+                              </tr>
+                              <!--tr>
+                                <td></td>
+                                  <td style="font-weight: bolder">50 puntos</td>
+                              </tr-->
+                          </tbody>
+                      </table>
+                  </div>
               </div>
-          </div>
-        </div>
+              <div class="col-md-6">  
+                  <div class="panel panel-warning" style="margin: 20px 20px 0px 20px">
+                      <div class="panel-heading" style="text-align: center; font-size: 20px; color: black">MAQUETACIÓN</div>
+                      <table class="table table-hover">
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      La fuente del texto pertenece a los estilos aceptados
+                                      <div class="info">
+                                          <img src="./images/info.png" alt="info" style="margin-left: 8px">
+                                          <span class="infoText">
+                                              <ul>
+                                                <li>Arial</li>
+                                                <li>Calibri</li>
+                                                <li>Candara</li>
+                                                <li>Corbel</li>
+                                                <li>Gill Sans</li>
+                                                <li>Helvética</li>
+                                                <li>Myriad</li>
+                                                <li>Segoe</li>
+                                                <li>Tahoma</li>
+                                                <li>Tiresias</li>
+                                                <li>Verdana</li>
+                                              </ul>
+                                          </span> 
+                                      </div>
+                                  </td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>El tamaño del texto tiene que ser como mínimo 12 y como máximo 16</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existe texto en cursiva</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existen más de un % de palabras en negrita</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existen más de un % de palabras subrayadas</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existen textos con sombreado</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existen más de un % de palabras en mayúsculas</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Color de fuente negro</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Color de fondo blanco sólido</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Cantidad de palabras en la diapositiva no supera el límite establecido</td>
+                           
+                              </tr>
+                              <!--tr>
+                                <td></td>
+                                  <td style="font-weight: bolder">50 puntos</td>
+                              </tr-->
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+           </div>
         
         <!-- Contacto -->
         <div class="well" id="contacto" style="margin-top: 80px; margin-bottom: 30px">
