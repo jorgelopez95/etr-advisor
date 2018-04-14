@@ -10,7 +10,6 @@ if(!isset($_SESSION)){ session_start(); }
         $file_uploaded = './input' . $file_uploaded . '.html';
         
         $doc = new DOMDocument();
-        //$doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
         $doc->loadHTMLFile($file_uploaded);
         $doc->saveHTML();        
 

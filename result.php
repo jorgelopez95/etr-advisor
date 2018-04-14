@@ -419,4 +419,4 @@
 </body>
     
 </html>
-<?php //session_destroy(); ?>
+<?php session_destroy(); ?>

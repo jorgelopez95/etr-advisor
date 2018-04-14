@@ -10,7 +10,6 @@ function designAnalyzer(){
     
     //HTML DOM structure
     $doc = new DOMDocument();
-    //$doc->loadHTMLFile("../input/tmp/phpHV46rO.html");
     $doc->loadHTMLFile($file_uploaded);
     $doc->saveHTML();
     $xpath = new DOMXpath($doc);
