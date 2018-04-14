@@ -3,7 +3,7 @@
        session_start();
         include_once ("./analyzer/textAnalyzer.php");
         include_once ("./analyzer/designAnalyzer.php");
-        //$textResult = textAnalyzer();
+        $textResult = textAnalyzer();
         $designResult = designAnalyzer();
    } 
 ?>
