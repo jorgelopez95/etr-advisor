@@ -86,6 +86,10 @@ function textAnalyzer(){
     foreach ($paragraphs as $words) {
         //We must split into words
         $words = explode(" ", trim($paragraphs[$i]));
+        $words = str_replace('(', '', $words);
+        $words = str_replace(')', '', $words);
+        $words = str_replace(',', '', $words);
+        $words = str_replace('.', '', $words);
         
         //Loop through each word. If we find a number, check if it's greater than 100.000  
         foreach($words as $word){
@@ -169,8 +173,8 @@ function textAnalyzer(){
 /* 12) Sujeto de la oración (Las oraciones deben tener sujeto) */
 /* 13) Composición de la oración (sujeto + verbo + complementos) */
     
-    $P5_errors = array(); $P5_errors = array(); $P8_errors = array(); $P11_errors = array(); $P12_errors = array(); $P13_errors = array();
-
+    $P5_errors=array(); $P8_errors=array(); $P10_errors=array(); $P11_errors=array(); $P12_errors=array(); $P13_errors=array(); 
+    
     $secondPersonCounter=0;
     //First of all. Iterating the paragraphs
     for($i=0; $i<count($paragraphs); $i++) {
@@ -212,7 +216,10 @@ function textAnalyzer(){
             /* [REGLA 5] */
             //Counting words per sentence obtained
             preg_match_all('/\pL+/u', $newArray[0], $nWords);
+            //print_r($nWords[0]);
+            $wordsSentence = array();
             if(count($nWords[0]) > 15){
+                array_push($wordsSentence, $nWords[0]);
                 //echo 'ERROR: Existen frases con más de 15 palabras en la frase: '. $newArray[0] . '<br>';
             }
             
@@ -223,6 +230,7 @@ function textAnalyzer(){
             $preps = array();
             $passives = array();
             $syntax = array();
+
             
             //Function getMorphological, located at morphosyntacticAnalyzer.php file
             $arrayAnalysis = array();
@@ -266,34 +274,38 @@ function textAnalyzer(){
                     unset($passiveAux);
                 }
             }
+            /* [REGLA 5] */
+            if(!empty($wordsSentence)){
+                array_push($P5_errors, $newArray[0]);
+            }
             /* [REGLA 8] */
             if((int)$prepCounter > 2){
                 $prepsFound=implode(", ", $preps);
-                $textAnalyzerArray['P8'] = 'Las frases no pueden contener más de 2 preposiciones. La frase ['.$newArray[0].'] tiene las siguientes: ('.$prepsFound .')';
+                array_push($P8_errors, '=> La frase ['.$newArray[0].'] tiene las siguientes: ('.$prepsFound .').');
                 //echo 'ERROR: Las frases no pueden contener más de 2 preposiciones. La frase ['.$newArray[0].'] tiene las siguientes: ('.$prepsFound .')';
             }
             /* [REGLA 10] */
         	if((int)$secondPersonCounter==0){
-                $textAnalyzerArray['P10'] = 'No se encuentran expresiones en segunda persona en la frase ['.$newArray[0].']';
+        	    array_push($P10_errors, '=> '.$newArray[0]);
         	    //echo 'ERROR: No se encuentran expresiones en segunda persona en la frase ['.$newArray[0].']';
         	}            
             /* [REGLA 11] */
             if((int)$passiveCounter > 0){
                 $passivesFound=implode(", ", $passives);
-                $textAnalyzerArray['P11'] = 'Intenta no usar la voz pasiva. Como en la frase: ['.$newArray[0].']';
+                array_push($P11_errors, '=> '.$newArray[0]);
             	//echo 'ERROR: Intenta no usar la voz pasiva. Como en la frase: ['.$newArray[0].']';
             }
             
             // SYNTACTIC
             /* [REGLA 12] */
             if(!($arrayAnalysis[1][0]=='iof_isSubject')){
-                $textAnalyzerArray['P12'] = 'Las oraciones deben tener sujeto. Error en la frase: ['.$newArray[0].']';
+                array_push($P12_errors, '=> '.$newArray[0]);
                 //echo 'ERROR: Las oraciones deben tener sujeto. Error en la frase: ['.$newArray[0].']';echo '<br>';
             }
             /* [REGLA 13] */
             //Subject + verb + complements
             if(!($arrayAnalysis[1][0]=='iof_isSubject') && (!in_array('iof_isDirectObject', $arrayAnalysis) || !in_array('iof_isComplement', $arrayAnalysis))){
-                $textAnalyzerArray['P13'] = 'Las oraciones deben tener la estructura: "sujeto + verbo + complementos". Error en la frase: ['.$newArray[0].']';
+                array_push($P13_errors, '=> '.$newArray[0]);
                 //echo 'ERROR: Las oraciones deben tener la estructura: sujeto+verbo+complementos. Error en la frase: ['.$newArray[0].']'; echo '<br>';
             }
                 
@@ -302,7 +314,24 @@ function textAnalyzer(){
         }
     }
     
- 
+    if(!empty($P5_errors)){
+        $textAnalyzerArray['P5'] = 'Existen frases con más de 15 palabras: <br><br> => '. implode("<br> => ", $P5_errors);
+    }
+    if(!empty($P8_errors)){
+        $textAnalyzerArray['P8'] = "Las frases no pueden contener más de 2 preposiciones. <br><br>" . implode("<br>", $P8_errors);
+    }
+    if(!empty($P10_errors)){
+        $textAnalyzerArray['P10'] = 'No se encuentran expresiones en segunda persona en las frases: <br><br>' . implode("<br>", $P10_errors);
+    }
+    if(!empty($P11_errors)){
+        $textAnalyzerArray['P11'] = 'Intenta no usar la voz pasiva. Error en: <br><br>'. implode("<br>", $P11_errors);      
+    }
+    if(!empty($P12_errors)){
+        $textAnalyzerArray['P12'] = 'Las oraciones deben tener sujeto. Error en: <br><br>'.implode("<br>", $P12_errors);
+    }
+    if(!empty($P13_errors)){
+        $textAnalyzerArray['P13'] = 'Las oraciones deben tener la estructura: "sujeto + verbo + complementos". Error en: <br><br>'.implode("<br>", $P12_errors);
+    }
 
 
 // ** 6) Cantidad de texto por página (75 palabras por diapositiva)
@@ -322,7 +351,7 @@ function textAnalyzer(){
         ){
             //Converting array of dates to string
             $datesFound=implode(", ", $dates[0]);
-            $textAnalyzerArray['P7'] = 'Las siguientes fechas deberían tener un formato del estilo de "28 de marzo del 2018": '.$datesFound.'.';
+            $textAnalyzerArray['P7'] = 'Las siguientes fechas deberían tener un formato del estilo de "28 de marzo del 2018": ('.$datesFound.').';
             //echo "ERROR: las siguientes fechas deberían tener un formato del estilo de '<em>28 de marzo del 2018</em>':" . '<br>' . $datesFound. '<br>';
         }
     }

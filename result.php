@@ -3,7 +3,7 @@
        session_start();
         include_once ("./analyzer/textAnalyzer.php");
         include_once ("./analyzer/designAnalyzer.php");
-        //$textResult = textAnalyzer();
+        $textResult = textAnalyzer();
         $designResult = designAnalyzer();
    } 
 ?>
@@ -128,7 +128,7 @@
                         $pautasDesign['P7'] = "No existen más de un % de palabras en mayúsculas";
                         $pautasDesign['P8'] = "Color de fuente negro";
                         $pautasDesign['P9'] = "Color de fondo blanco sólido";
-                        $pautasDesign['P10'] = "Cantidad de palabras en la diapositiva no supera el límite establecido";
+                        $pautasDesign['P10'] = "Cantidad de palabras en la diapositiva no supera el límite establecido (50)";
                         
                         $pautasText = array();
                         $pautasText['P1'] = "El tamaño de las líneas debe de ser inferior a 60 caracteres";
@@ -418,6 +418,6 @@
 </body>
 </html>
 <?php
-    /*unlink($file_uploaded);
-    session_destroy();*/
+    unlink($file_uploaded);
+    session_destroy();
 ?>

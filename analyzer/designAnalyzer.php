@@ -123,7 +123,7 @@ function designAnalyzer(){
         }
     }
     if ($P3_errors != 0){
-        $designAnalyzerArray['P3'] = 'No debe existir texto en cursiva. Es decir, evita el uso de las etiquetas <em> o <i>, así como del estilo de fuente "italic"';
+        $designAnalyzerArray['P3'] = 'No debe existir texto en cursiva. Es decir, evita el uso de las etiquetas em o i, así como del estilo de fuente "italic"';
     }
 
 
@@ -256,7 +256,7 @@ function designAnalyzer(){
     
 /* 8) Color de fuente negro */	
 
-    $P8_errors = 0;
+    $P8_errors = array();
     //Definition of tags wich can include "style="color"
     $colorTags = $xpath->query('//body | //span | //p | //div | //a | //li | //ol | //h1 | //h2 | //h3 | //h4 | //h5 | //h6');
     $length = $colorTags->length;
@@ -276,19 +276,21 @@ function designAnalyzer(){
             $value = trim($value);
             
             if (!(strcmp($value,'#000000')==0 ||  strcmp($value,'black')==0 || strcmp($value,'#Hex_RGB')==0)){
-                $P8_errors++;
+                array_push($P8_errors, trim($value));
                 //echo "ERROR, el color de fuente debe ser negro";
             }
         }
     }
-    if ($P8_errors != 0){
-        $designAnalyzerArray['P8'] = 'El color de la fuente debe ser negro. Este se puede indicar mediante los valores de color #000000, black o #Hex_RGB.';
+    if (!empty($P8_errors)){
+        $fontColorError = implode(", ", $P8_errors);
+        $designAnalyzerArray['P8'] = 'Hay colores de fuente inadecuados, como ('.$fontColorError.'). El color de la fuente debe ser negro, el cual puede indicar mediante los valores de color #000000, black o #Hex_RGB.';
     }
-    
+    unset($P8_errors);
+
       
 /* 9) Color de fondo blanco sólido	*/
 
-    $P9_errors = 0;
+    $P9_errors = array();
     //Definition of tags wich can include "style="background-color o background"
     $backgroundTags = $xpath->query('//body | //span | //div');
     $length = $backgroundTags->length;
@@ -308,14 +310,18 @@ function designAnalyzer(){
             $value = trim($value);
             
             if (!(strcmp($value,'#FFFFFF')==0 ||  strcmp($value,'white')==0)){
-                $P9_errors++;
+                array_push($P9_errors, trim($value));
                 //echo "ERROR, el color de fondo debe ser blanco sólido";
             }
         }
     }
-    if ($P9_errors != 0){
-        $designAnalyzerArray['P9'] = 'El color de fondo debe ser blanco. Este se puede indicar mediante los valores de background o background-color #FFFFFF o white.';
+    if (!empty($P9_errors)){
+        $backgroundError = implode(", ", $P9_errors);
+        $designAnalyzerArray['P9'] = 'Se ha detectado un color de fondo .'.$backgroundError.' El color de fondo debe ser blanco, indicado mediante los valores de background o background-color #FFFFFF o white.';
     }
+    unset($P9_errors);
+   
+   
     
     
 /* 10) Cantidad de palabras en la diapositiva no supera el límite establecido (50 palabras) */
