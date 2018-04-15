@@ -3,7 +3,7 @@
        session_start();
         include_once ("./analyzer/textAnalyzer.php");
         include_once ("./analyzer/designAnalyzer.php");
-        $textResult = textAnalyzer();
+        //$textResult = textAnalyzer();
         $designResult = designAnalyzer();
    } 
 ?>
@@ -78,7 +78,7 @@
         <div class="row featurette" id="score">
             <h4>Has obtenido una valoración de:</h4> 
             <h2 style="font-size: 50px; font-weight: 500;">
-                <?php $punt=count($designResult)+count($textResult);
+                <?php $punt=22-(count($designResult)+count($textResult));
                 $punt=round(4.54545454545*$punt);
                 echo $punt."/100"; ?>
             </h2>
@@ -89,7 +89,7 @@
             <?php $var = $_GET['file']; ?>
             
             <img src='../images/html_file.png'> <h4> <?php echo "$var"; ?> </h4></img>
-                <div class="info">
+                <div class="info" style="cursor:help">
                     <img src="./images/folder.jpg" alt="info" style="margin-left: 8px">
                         <span class="infoFile">
                             <?php
@@ -175,11 +175,11 @@
                             if(array_key_exists ($key, $textResult)){ ?>
                                  <div class='panel panel-danger'>
                                     <div class='panel-heading'>
-                                        <h4 class='panel-title'><a data-toggle='collapse' <?php echo "href=#$key >"; echo $pautasText[$key]; ?>
+                                        <h4 class='panel-title'><a data-toggle='collapse' <?php echo "href=#$key"."_2 >"; echo $pautasText[$key]; ?>
                                             <span class="glyphicon glyphicon-alert" style="margin-left: 10px; color: salmon"></span>
                                         </a></h4>
                                     </div>
-                                    <div <?php echo "id=$key "; ?> class='panel-collapse collapse'>
+                                    <div <?php echo "id=$key"."_2 "; ?> class='panel-collapse collapse'>
                                       <div class='panel-body'><?php echo $textResult[$key]; ?></div>
                                     </div>
                                   </div>
@@ -385,38 +385,39 @@
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
     <script>
         $(document).ready(function(){  
-    myVar = setTimeout(showPage, 3000);
-    var chart = AmCharts.makeChart("chartdiv", {
-        "type": "pie",
-        "theme": "light",
-        "innerRadius": "40%",
-        "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
-        "dataProvider": [{
-            "type": "Texto",
-            "score": '<?php $text=12-count($textResult); echo $text; ?>'
-        }, {
-            "type": "Maquetación",
-            "score": '<?php $design=10-count($designResult); echo $design; ?>'
-        }],
-        "balloonText": "[[value]]",
-        "valueField": "score",
-        "titleField": "type",
-        "balloon": {
-            "drop": true,
-            "adjustBorderColor": false,
-            "color": "#FFFFFF",
-            "fontSize": 16
-        },
-        "export": {
-            "enabled": false
-        }
-    });
-    
-});
+            myVar = setTimeout(showPage, 3000);
+            var chart = AmCharts.makeChart("chartdiv", {
+                "type": "pie",
+                "theme": "light",
+                "innerRadius": "40%",
+                "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
+                "dataProvider": [{
+                    "type": "Texto",
+                    "score": '<?php $text=12-count($textResult); echo $text; ?>'
+                }, {
+                    "type": "Maquetación",
+                    "score": '<?php $design=10-count($designResult); echo $design; ?>'
+                }],
+                "balloonText": "[[value]]",
+                "valueField": "score",
+                "titleField": "type",
+                "balloon": {
+                    "drop": true,
+                    "adjustBorderColor": false,
+                    "color": "#FFFFFF",
+                    "fontSize": 16
+                },
+                "export": {
+                    "enabled": false
+                }
+            });
+        });
     </script>
     <script src="./scripts/top.js"></script>
     
 </body>
-    
 </html>
-<?php session_destroy(); ?>
+<?php
+    /*unlink($file_uploaded);
+    session_destroy();*/
+?>
