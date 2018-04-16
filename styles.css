@@ -156,9 +156,11 @@ body {
     position: absolute;
     z-index: 1;
 }
-.info .infoFile {
+.infoFile {
     visibility: hidden;
-    width: 2000%;
+    /*width: 2000%;
+    left: -900%;*/
+    width: 2100%;
     left: -900%;
     border: 3px dashed black;
     background-color: white;
@@ -287,6 +289,16 @@ body {
     margin-top: 100px;
 }
 
+.info .infoFile .pptx2html{
+    position: relative;
+    width: 960px !important;
+    height: 500px !important;
+    border-color: rgba(218, 102, 25, 0.5);
+    transform: scale(1, 1) !important;
+    transform-origin: 0 !important;
+}
+
+
 
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {
@@ -366,8 +378,8 @@ body {
         margin: 20px 0px 0px 30px !important;
     }
     .info .infoFile {
-        width: 600%;
-        left: -250%;
+        width: 700%;
+        left: -300%;
     }
     #resultados{
         margin-left: 10%;
@@ -389,6 +401,14 @@ body {
         margin-left: 10% !important;
         margin-top: 2% !important;
         width: 80% !important;
+    }
+    .info .infoFile .pptx2html{
+        position: relative;
+        width: 460px !important;
+        height: 450px !important;
+        border-color: white !important;
+        transform: scale(0.33, 1) !important;
+        transform-origin: 0 !important;
     }
 }
 
