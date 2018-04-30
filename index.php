@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    $file_uploaded = $_SESSION['file_uploaded'];
+    $file_upload = './input' . $file_uploaded . '.html';
+    unlink($file_upload);
+    session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
