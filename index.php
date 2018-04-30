@@ -202,10 +202,10 @@
                                   <td>Evitar el uso de más de 15 palabras por frase</td>
                                   
                               </tr>
-                              <tr>
+                              <!--tr>
                                   <td>Evitar escribir más de 75 palabras por diapositiva</td>
                                   
-                              </tr>
+                              </tr-->
                               <tr>
                                   <td>Escribir las fechas al completo
                                       <div class="info">

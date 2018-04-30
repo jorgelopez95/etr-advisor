@@ -1,11 +1,12 @@
 <?php
-   if(!isset($_SESSION)){ 
-       session_start();
+    if(!isset($_SESSION)){ 
+        session_start();
         include_once ("./analyzer/textAnalyzer.php");
         include_once ("./analyzer/designAnalyzer.php");
         $textResult = textAnalyzer();
         $designResult = designAnalyzer();
-   } 
+    } 
+    $file_uploaded = $_SESSION['file_uploaded'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +41,7 @@
             <div class="row">
                 <!-- Logo -->
               <div class="navbar-header col-md-1 col-sm-2">
-                  <a href="/"><img src="./images/logo_etr.png" alt="ETR Advisor"> </a>
+                  <a href="/"><img src="./images/logo_etr.png" alt="ETR Advisor"></a>
               </div>
               <!-- App text -->
               <div class="navbar-header col-md-5 col-sm-8" style="margin-left: 20px;">
@@ -78,9 +79,15 @@
         <div class="row featurette" id="score">
             <h4>Has obtenido una valoración de:</h4> 
             <h2 style="font-size: 50px; font-weight: 500;">
-                <?php $punt=22-(count($designResult)+count($textResult));
-                $punt=round(4.54545454545*$punt);
-                echo $punt."/100"; ?>
+                <?php
+                    if(!empty($file_uploaded)){
+                        $punt=22-(count($designResult)+count($textResult));
+                        $punt=round(4.54545454545*$punt);
+                        echo $punt."/100"; 
+                    }else{
+                        echo "-";
+                    }
+                ?>
             </h2>
             <div class="progress" style="margin-left:20%; margin-top: 2% ;width: 70%;">
               <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
@@ -88,14 +95,13 @@
             </div>
             <?php $var = $_GET['file']; ?>
             
-            <img src='../images/html_file.png'> <h4> <?php echo "$var"; ?> </h4></img>
+            <img src='../images/html_file.png'> <h4> <?php if(!empty($file_uploaded)) echo "$var"; ?> </h4></img>
                 <div class="info" style="cursor:help">
                     <img src="./images/folder.jpg" alt="info" style="margin-left: 8px">
                         <span class="infoFile">
                             <?php
-                                $file_uploaded = $_SESSION['file_uploaded'];
-                                $file_uploaded = './input' . $file_uploaded . '.html';
-                                echo file_get_contents($file_uploaded, true); 
+                                $file_upload = './input' . $file_uploaded . '.html';
+                                echo file_get_contents($file_upload, true); 
                             ?>
                         </span> 
                 </div>
@@ -112,9 +118,15 @@
                 <div class="col-12" id="resultados">
                     <h2 style="margin-bottom: 25px; font-size: 34px;">Resultados</h2> 
                     <h5 style="font-size: 20px; font-family: Times New Roman, Times, serif; margin: 20px; color: midnightblue;"> 
-                        <?php $incorrects=count($designResult)+count($textResult);
-                              $corrects= 22 - $incorrects;  
-                              echo "$corrects correctos / $incorrects incorrectos"; ?>
+                        <?php 
+                            if(empty($file_uploaded)){
+                                echo "- correctos / - incorrectos";                        
+                            } else{
+                                $incorrects=count($designResult)+count($textResult);
+                                $corrects= 22 - $incorrects;  
+                                echo "$corrects correctos / $incorrects incorrectos"; 
+                            }
+                        ?>
                     </h5>
                     <?php
                         //Bucles recorriendo estos arrays y pintando los resultados
@@ -146,51 +158,56 @@
                     ?>   
                         <div class='panel-group'>
                         <?php
-                        $i=0;
-                        foreach($pautasDesign as $key => $value){
-                            if(array_key_exists ($key, $designResult)){ ?>
-                                 <div class='panel panel-danger'>
-                                    <div class='panel-heading'>
-                                        <h4 class='panel-title'><a data-toggle='collapse' <?php echo "href=#$key >"; echo $pautasDesign[$key]; ?>
-                                            <span class="glyphicon glyphicon-alert" style="margin-left: 10px; color: salmon"></span>
-                                        </a></h4>
+
+                        if(!empty($file_uploaded)){
+                            $i=0;
+                            foreach($pautasDesign as $key => $value){
+                                if(array_key_exists ($key, $designResult)){ ?>
+                                     <div class='panel panel-danger'>
+                                        <div class='panel-heading'>
+                                            <h4 class='panel-title'><a data-toggle='collapse' <?php echo "href=#$key >"; echo $pautasDesign[$key]; ?>
+                                                <span class="glyphicon glyphicon-alert" style="margin-left: 10px; color: salmon"></span>
+                                            </a></h4>
+                                        </div>
+                                        <div <?php echo "id=$key "; ?> class='panel-collapse collapse'>
+                                          <div class='panel-body' style="font-size: 16px"><?php echo $designResult[$key]; ?></div>
+                                        </div>
+                                      </div>
+                                <?php } else { ?>
+                                    <div class='panel panel-success'>
+                                        <div class='panel-heading'>
+                                            <h4 class='panel-title'><?php echo $pautasDesign[$key]; ?></h4>
+                                        </div>
                                     </div>
-                                    <div <?php echo "id=$key "; ?> class='panel-collapse collapse'>
-                                      <div class='panel-body' style="font-size: 16px"><?php echo $designResult[$key]; ?></div>
-                                    </div>
-                                  </div>
-                            <?php } else { ?>
-                                <div class='panel panel-success'>
-                                    <div class='panel-heading'>
-                                        <h4 class='panel-title'><?php echo $pautasDesign[$key]; ?></h4>
-                                    </div>
-                                </div>
-                           <?php }
-                            $i++;
+                               <?php }
+                                $i++;
+                            }
                         }
                         ?>
                         <?php
                         $j=0;
-                        foreach($pautasText as $key => $value){
-                            if(array_key_exists ($key, $textResult)){ ?>
-                                 <div class='panel panel-danger'>
-                                    <div class='panel-heading'>
-                                        <h4 class='panel-title'><a data-toggle='collapse' <?php echo "href=#$key"."_2 >"; echo $pautasText[$key]; ?>
-                                            <span class="glyphicon glyphicon-alert" style="margin-left: 10px; color: salmon"></span>
-                                        </a></h4>
+                        if(!empty($file_uploaded)){
+                            foreach($pautasText as $key => $value){
+                                if(array_key_exists ($key, $textResult)){ ?>
+                                     <div class='panel panel-danger'>
+                                        <div class='panel-heading'>
+                                            <h4 class='panel-title'><a data-toggle='collapse' <?php echo "href=#$key"."_2 >"; echo $pautasText[$key]; ?>
+                                                <span class="glyphicon glyphicon-alert" style="margin-left: 10px; color: salmon"></span>
+                                            </a></h4>
+                                        </div>
+                                        <div <?php echo "id=$key"."_2 "; ?> class='panel-collapse collapse'>
+                                          <div class='panel-body'><?php echo $textResult[$key]; ?></div>
+                                        </div>
+                                      </div>
+                                <?php } else { ?>
+                                    <div class='panel panel-success'>
+                                        <div class='panel-heading'>
+                                            <h4 class='panel-title'><?php echo $pautasText[$key]; ?></h4>
+                                        </div>
                                     </div>
-                                    <div <?php echo "id=$key"."_2 "; ?> class='panel-collapse collapse'>
-                                      <div class='panel-body'><?php echo $textResult[$key]; ?></div>
-                                    </div>
-                                  </div>
-                            <?php } else { ?>
-                                <div class='panel panel-success'>
-                                    <div class='panel-heading'>
-                                        <h4 class='panel-title'><?php echo $pautasText[$key]; ?></h4>
-                                    </div>
-                                </div>
-                           <?php }
-                            $j++;
+                               <?php }
+                                $j++;
+                            }
                         }
                         ?>
                         </div>
@@ -238,10 +255,10 @@
                                   <td>Evitar el uso de más de 15 palabras por frase</td>
                                   <td>4.54 puntos</td>
                               </tr>
-                              <tr>
+                              <!--tr>
                                   <td>Evitar escribir más de 75 palabras por diapositiva</td>
                                   <td>4.54 puntos</td>
-                              </tr>
+                              </tr!-->
                               <tr>
                                   <td>Escribir las fechas al completo
                                       <div class="info">
@@ -393,10 +410,10 @@
                 "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
                 "dataProvider": [{
                     "type": "Texto",
-                    "score": '<?php $text=12-count($textResult); echo $text; ?>'
+                    "score": '<?php if(!empty($file_uploaded))$text=12-count($textResult); echo $text; ?>'
                 }, {
                     "type": "Maquetación",
-                    "score": '<?php $design=10-count($designResult); echo $design; ?>'
+                    "score": '<?php if(!empty($file_uploaded))$design=10-count($designResult); echo $design; ?>'
                 }],
                 "balloonText": "[[value]]",
                 "valueField": "score",
@@ -419,5 +436,4 @@
 </html>
 <?php
     unlink($file_uploaded);
-    session_destroy();
 ?>
