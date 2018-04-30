@@ -3,7 +3,7 @@
        session_start();
         include_once ("./analyzer/textAnalyzer.php");
         include_once ("./analyzer/designAnalyzer.php");
-        //$textResult = textAnalyzer();
+        $textResult = textAnalyzer();
         $designResult = designAnalyzer();
    } 
 ?>
@@ -418,6 +418,6 @@
 </body>
 </html>
 <?php
-    /*unlink($file_uploaded);
-    session_destroy();*/
+    unlink($file_uploaded);
+    session_destroy();
 ?>

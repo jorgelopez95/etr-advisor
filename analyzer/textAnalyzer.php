@@ -224,10 +224,10 @@ function textAnalyzer(){
             }
             
             //MORPHOLOGIC
-            $prepCounter = 0; //Only prepositions per sentence must be taken into account.
+            $pronCounter = 0; //Only pronositions per sentence must be taken into account.
             $passiveCounter = 0;
             $passiveAux = array(); //For special treatments in passive voice
-            $preps = array();
+            $prons = array();
             $passives = array();
             $syntax = array();
 
@@ -245,9 +245,14 @@ function textAnalyzer(){
                 
                 //Searching strings according to the rules
                 /* [REGLA 8] */
-                if(strstr($value, 'preposición')){
-                    array_push($preps, $key);
-                    $prepCounter++;
+                if(strstr($value, 'relativo') || strstr($value, 'cuantificador') || strstr($value, 'posesivo') || strstr($value, 'demostrativo') ||
+                     strstr($value, 'interrogativo') || strstr($value, 'personal') //|| strstr($value, 'indefinido')
+                   ){ 
+                   if (!(strstr($value, 'determinante') || strstr($value, 'adverbio')) ) {
+                        array_push($prons, $key);
+                        $pronCounter++;
+                   }
+
                 }
                 /* [REGLA 10] */
                 if(strstr($value, '2')){
@@ -279,10 +284,10 @@ function textAnalyzer(){
                 array_push($P5_errors, $newArray[0]);
             }
             /* [REGLA 8] */
-            if((int)$prepCounter > 2){
-                $prepsFound=implode(", ", $preps);
-                array_push($P8_errors, '=> La frase ['.$newArray[0].'] tiene las siguientes: ('.$prepsFound .').');
-                //echo 'ERROR: Las frases no pueden contener más de 2 preposiciones. La frase ['.$newArray[0].'] tiene las siguientes: ('.$prepsFound .')';
+            if((int)$pronCounter > 2){
+                $pronsFound=implode(", ", $prons);
+                array_push($P8_errors, '=> La frase ['.$newArray[0].'] tiene las siguientes: ('.$pronsFound .').');
+                //echo 'ERROR: Las frases no pueden contener más de 2 pronombres. La frase ['.$newArray[0].'] tiene las siguientes: ('.$pronsFound .')';
             }
             /* [REGLA 10] */
         	if((int)$secondPersonCounter==0){
@@ -318,7 +323,7 @@ function textAnalyzer(){
         $textAnalyzerArray['P5'] = 'Existen frases con más de 15 palabras: <br><br> => '. implode("<br> => ", $P5_errors);
     }
     if(!empty($P8_errors)){
-        $textAnalyzerArray['P8'] = "Las frases no pueden contener más de 2 preposiciones. <br><br>" . implode("<br>", $P8_errors);
+        $textAnalyzerArray['P8'] = "Las frases no pueden contener más de 2 pronombres. <br><br>" . implode("<br>", $P8_errors);
     }
     if(!empty($P10_errors)){
         $textAnalyzerArray['P10'] = 'No se encuentran expresiones en segunda persona en las frases: <br><br>' . implode("<br>", $P10_errors);
