@@ -137,26 +137,66 @@
         <div class="well" id="info" style="margin-top: 40px">
                 <h3 style="text-align:center; font-size: 40px; font-style: italic">Información del sitio web</h3>
         </div>
+
         <div class="row">
         <div class="col-lg-4">
           <img class="img-circle" src="./images/laptop.png" alt="Generic placeholder image" width="140" height="140">
           <h2>Crea tu contenido</h2>
-            <p><b>Easy-to-Read Advisor</b> analiza la <em>Lectura Fácil</em> de una diapositiva, en formato <b>HTML</b>. Por tanto, el primer paso, es obtener dicho contenido. Hay ciertas webs como <a class="" href="https://slidewiki.org/" target="_blank">SlideWiki</a> que realizan esto por ti. </p>
-        </div><!-- /.col-lg-4 -->
+            <p><b>Easy-to-Read Advisor</b> analiza tu diapositiva, en formato <b>HTML</b>. Por tanto, el primer paso es obtener el contenido en dicho formato. La web <a class="" href="https://slidewiki.org/" target="_blank">SlideWiki</a> realiza esta labor por ti. </p>
+              <!-- Collapse -->  
+              <button class="btn btn-default buttonCollapse" onclick="document.getElementById('id01').style.display='block'">   
+                  <h4>
+                    <span class="glyphicon glyphicon-transfer" style="margin-right: 20px; color: Brown"></span>
+                     Ver más
+                  </h4>
+              </button>
+                <div id="id01" class="modal">
+                  <div class="modal-content animate" action="/action_page.php">
+                      <div class="row" id="modal-exit" style="padding-top: 1%;">
+				                  <a type="button" onclick="document.getElementById('id01').style.display='none'" style="float: right !important;padding-right: 4%;">
+				                    <span class="glyphicon glyphicon-remove"></span>
+				                  </a>
+				              </div> 
+                      <div class="row" id="modal-row" style="padding-top: 2% !important; padding-left: 2%; padding-right: 1% !important;">
+                        <div class="col-lg-4">
+                            <h2 style="margin-top: 0px; margin-bottom: 4%">Selecciona una diapositiva</h2>
+                            <img class="img-thumbnail" src="./images/instruc_1.png" alt="Instruccion 1" width="550" height="450" style="margin-bottom: 4%">
+                            <p style="text-align: left">Una vez hayas accedido a SlideWiki, selecciona una diapositiva, o crea una. </p>
+                            <p style="text-align: left">Aquí tienes un repositorio a modo de ejemplo: <a href="https://slidewiki.org/deck/108653" target="_blank">https://slidewiki.org/deck/108653</a></p>
+                        </div>
+                        <div class="col-lg-4">
+                            <h2 style="margin-top: 0px; margin-bottom: 4%">Accede al modo edición</h2>
+                            <p style="text-align: left">Clickando en "Editar" podrás realizar los cambios que consideres oportunos.</p>
+                            <img class="img-thumbnail" src="./images/instruc_2.png" alt="Instruccion 1" width="416" height="350" style="margin-bottom: 4%">
+                        </div>
+                        <div class="col-lg-4">
+                            <h2 style="margin-top: 0px; margin-bottom: 4%">Obtén el código HTML</h2>
+                            <p style="text-align: left">Cuando estés listo, pulsa en "Editor HTML".</p>
+                            <img class="img-thumbnail" src="./images/instruc_3.png" alt="Instruccion 1" width="550" height="450" style="margin-bottom: 4%">
+                            <p style="text-align: left">Una vez llegados a este paso, debes copiar el código que se muestra en la imagen.</p>
+                            <p style="text-align: left">Cópialo en un editor de texto, y una vez guardado tu archivo con extensión .html, ya podrás comprobar si es de Lectura Fácil</p>
+                        </div>  
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+        </div>
         <div class="col-lg-4">
           <img class="img-circle" src="./images/upload.png" alt="Subir archivo" width="140" height="140">
           <h2>Analiza tu archivo</h2>
           <p>Sube tu archivo con extensión .html, y podrás comprobar si cumples con las <a href="#pautas">pautas</a> de accesibilidad.</p>
             <br>
-         <!-- <p><a class="btn btn-success" href="#" role="button" style="font-size: 23px">Subir archivo &raquo;</a></p>-->
-        </div><!-- /.col-lg-4 -->
+        </div>
         <div class="col-lg-4">
           <img class="img-circle" src="./images/resultados.jpg" alt="Resultados" width="140" height="140">
           <h2>Resultados</h2>
-          <p>Una vez se haya procesado tu fichero, se proporcionará una <b>puntuación</b>. Además, se mostrará un análisis detallado de aquellos puntos que debes mejorar.</p>
-        </div><!-- /.col-lg-4 -->       
-      </div><!-- /.row -->
+          <p>Una vez se haya procesado tu fichero, se proporcionará una <b>puntuación</b>. Además, se mostrará un <b>análisis detallado</b> de aquellos puntos que debes mejorar.</p>
+        </div> 
         
+
+       
+
+      
+    </div><!-- /.row -->
 
         <!-- Lectura fácil -->
         <div class="well" id="lectura" style="margin-top: 40px">
@@ -165,8 +205,8 @@
         <div class="row featurette" style="padding-top: 20px">
         <div class="col-md-7">
             <h2 class="featurette-heading" id="metodologia">Metodología</h2><br>
-            <p class="lead" style="padding-left: 26px; font-size: 18px">La lectura fácil es la adaptación que permite una lectura y una comprensión más sencilla de un contenido. No sólo abarca el <b>texto</b>, sino también se refiere a las ilustraciones y <b>maquetación</b>. Se considera también lectura fácil el método por el cual se hacen más comprensibles los textos para todas y todos, eliminando barreras para la <b>comprensión</b>, el aprendizaje y la participación. (<a href="https://es.wikipedia.org/wiki/Lectura_f%C3%A1cil">vía Wikipedia</a>)</p> <br><br>
-            <p class="lead" style="padding-left: 26px; font-size: 18px">   Lectura Fácil se dirige a todas las personas, en especial a aquellas que tienen <b>dificultades lectoras</b> transitorias (inmigración, incorporación tardía a la lectura, escolarización deficiente...) o permanentes (trastornos del aprendizaje, diversidad funcional, senilidad...). (<a href="http://www.lecturafacil.net/es/info/que-es-la-lectura-facil-lf1/">vía Asociación de Lectura Fácil</a>)</p>
+            <p class="lead" style="padding-left: 26px; font-size: 18px">La lectura fácil es la adaptación que permite una lectura y una comprensión más sencilla de un contenido. No sólo abarca el <b>texto</b>, sino también se refiere a las ilustraciones y <b>maquetación</b>. Se considera también lectura fácil el método por el cual se hacen más comprensibles los textos para todas y todos, eliminando barreras para la <b>comprensión</b>, el aprendizaje y la participación. (<a href="https://es.wikipedia.org/wiki/Lectura_f%C3%A1cil" target="_blank">vía Wikipedia</a>)</p> <br><br>
+            <p class="lead" style="padding-left: 26px; font-size: 18px">Lectura Fácil se dirige a todas las personas, en especial a aquellas que tienen <b>dificultades lectoras</b> transitorias (inmigración, incorporación tardía a la lectura, escolarización deficiente...) o permanentes (trastornos del aprendizaje, diversidad funcional, senilidad...). (<a href="http://www.lecturafacil.net/es/info/que-es-la-lectura-facil-lf1/" target="_blank">vía Asociación de Lectura Fácil</a>)</p>
         </div>
         <div class="col-md-5">
             <div class="embed-responsive embed-responsive-16by9" style=" margin: 50px 25px 20px 25px">
@@ -343,7 +383,7 @@
 	
         <div class="row">
             <div class="col-md-6">
-                <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3002.7683467614406!2d-3.8375662847629326!3d40.40540816425226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418f59d1469d93%3A0xf68b5804693b49f0!2sCampus+Montegancedo+-+Universidad+Polit%C3%A9cnica+de+Madrid!5e1!3m2!1ses!2ses!4v1520724376251" width="650" height="350" frameborder="0" style="border:0; padding-left: 20px" allowfullscreen></iframe>
+                <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3002.7683467614406!2d-3.8375662847629326!3d40.40540816425226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418f59d1469d93%3A0xf68b5804693b49f0!2sCampus+Montegancedo+-+Universidad+Polit%C3%A9cnica+de+Madrid!5e1!3m2!1ses!2ses!4v1520724376251" width="650" height="350" frameborder="0" style="border:0; padding-left: 20px; width: 100%" allowfullscreen></iframe>
             </div>
             <div class="col-md-6">
                 <h4 style="margin-top: 20px; margin-bottom: 20px; padding-left: 25px"><b>Envíanos tus comentarios</b></h4>
@@ -368,7 +408,7 @@
         </div>
         
     <!-- Button back-to-top -->
-    <!--a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a-->
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
     <!-- Footer -->    
     <footer style="margin: 55px 0px 15px 15px; font-weight: bolder">
@@ -381,6 +421,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="./scripts/browse.js"></script>
     <script src="./scripts/top.js"></script>
+    <script>
+  		// Get the modal
+  		var modal = document.getElementById('id01');
+  		// When the user clicks anywhere outside of the modal, close it
+  		window.onclick = function(event) {
+  			if (event.target == modal) {
+  				modal.style.display = "none";
+  			}
+  		}
+    </script>
 </body>
     
 </html>
