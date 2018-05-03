@@ -154,7 +154,7 @@
                   <div class="modal-content animate" action="/action_page.php">
                       <div class="row" id="modal-exit" style="padding-top: 1%;">
 				                  <a type="button" onclick="document.getElementById('id01').style.display='none'" style="float: right !important;padding-right: 4%;">
-				                    <span class="glyphicon glyphicon-remove"></span>
+				                    <span class="glyphicon glyphicon-remove" id="remove"></span>
 				                  </a>
 				              </div> 
                       <div class="row" id="modal-row" style="padding-top: 2% !important; padding-left: 2%; padding-right: 1% !important;">

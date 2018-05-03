@@ -98,11 +98,11 @@ body {
   margin-right: 10px;
   margin-left: 10px;
 }
-.glyphicon.glyphicon-remove{
+.glyphicon.glyphicon-remove#remove{
     cursor: pointer;
     color: black;
 }
-.glyphicon.glyphicon-remove:hover{
+.glyphicon.glyphicon-remove#remove:hover{
     color: red;
 }
 .buttonCollapse{
