@@ -43,7 +43,7 @@
             $mail->Body = "Mensaje nuevo de <b>$name</b>, con email <b>$email</b> en Easy-to-Read Advisor<br><br> -Mensaje:<br> $message";
             
             if(!$mail->send()){
-                echo "Mailer Error: " . $mail->ErrorInfo;
+                //echo "Mailer Error: " . $mail->ErrorInfo;
             } 
             else{
             //Reloading index and sending ok message
