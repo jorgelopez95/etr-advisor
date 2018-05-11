@@ -54,8 +54,10 @@
             echo "</script>"; 
             }
         } 
-        catch (phpmailerException $e) { echo $e->errorMessage();} 
-        catch (Exception $e) { echo $e->getMessage();}
+        catch (phpmailerException $e) { //echo $e->errorMessage();
+        } 
+        catch (Exception $e) { //echo $e->getMessage();
+        }
     }
     else{
         echo 'Input fail';
