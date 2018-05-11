@@ -27,7 +27,7 @@
             $mail->SMTPAuth = true;                          
             //Provide username and password     
             $mail->Username = 'etr.advisor@gmail.com';                 
-            $mail->Password = 'LecturaFacil';                           
+            $mail->Password = 'etr-LecturaFacil';                           
             //If SMTP requires TLS encryption then set it
             $mail->SMTPSecure = 'tls';                           
             //Set TCP port to connect to 
