@@ -456,6 +456,9 @@ body {
         transform: scale(0.33, 1) !important;
         transform-origin: 0 !important;
     }
+    #descripTables{
+        margin: 20px 0px 0px 30px !important;
+    }
     /* Modal Content/Box */
     .modal-content {
 	    margin: 35% auto 25% 2%; 

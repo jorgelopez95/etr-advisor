@@ -167,13 +167,13 @@ function textAnalyzer(){
 
 
 /* 5) Número de palabras por frase (15 palabras máximo por frase) */
-/* 8) Uso de pronombres (2 máximo por frase) */
+/* 7) Uso de pronombres (2 máximo por frase) */
 /* 10) Dirección del mensaje (Se debe usar la segunda persona) */
 /* 11) Uso de forma pasiva (No usar forma pasiva de los verbos) */
 /* 12) Sujeto de la oración (Las oraciones deben tener sujeto) */
 /* 13) Composición de la oración (sujeto + verbo + complementos) */
     
-    $P5_errors=array(); $P8_errors=array(); $P10_errors=array(); $P11_errors=array(); $P12_errors=array(); $P13_errors=array(); 
+    $P5_errors=array(); $P7_errors=array(); $P9_errors=array(); $P10_errors=array(); $P11_errors=array(); $P12_errors=array(); 
     
     $secondPersonCounter=0;
     //First of all. Iterating the paragraphs
@@ -244,7 +244,7 @@ function textAnalyzer(){
                 $value = str_replace(',', '', $value);
                 
                 //Searching strings according to the rules
-                /* [REGLA 8] */
+                /* [REGLA 7] */
                 if(strstr($value, 'relativo') || strstr($value, 'cuantificador') || strstr($value, 'posesivo') || strstr($value, 'demostrativo') ||
                      strstr($value, 'interrogativo') || strstr($value, 'personal') //|| strstr($value, 'indefinido')
                    ){ 
@@ -254,16 +254,16 @@ function textAnalyzer(){
                    }
 
                 }
-                /* [REGLA 10] */
+                /* [REGLA 9] */
                 if(strstr($value, '2')){
                     $secondPersonCounter++;
                 }
-                /* [REGLA 11] */
+                /* [REGLA 10] */
                 if(strstr($value, 'pasiva')){
                     array_push($passives, $key);
                     $passiveCounter++;
                 }
-                /* [REGLA 12] */
+                /* [REGLA 11] */
                 if(strstr($value, 'sujeto')){
                     array_push($syntax, 'sujeto');
                 }
@@ -283,34 +283,34 @@ function textAnalyzer(){
             if(!empty($wordsSentence)){
                 array_push($P5_errors, $newArray[0]);
             }
-            /* [REGLA 8] */
+            /* [REGLA 7] */
             if((int)$pronCounter > 2){
                 $pronsFound=implode(", ", $prons);
-                array_push($P8_errors, '=> La frase ['.$newArray[0].'] tiene las siguientes: ('.$pronsFound .').');
+                array_push($P7_errors, '=> La frase ['.$newArray[0].'] tiene las siguientes: ('.$pronsFound .').');
                 //echo 'ERROR: Las frases no pueden contener más de 2 pronombres. La frase ['.$newArray[0].'] tiene las siguientes: ('.$pronsFound .')';
             }
-            /* [REGLA 10] */
+            /* [REGLA 9] */
         	if((int)$secondPersonCounter==0){
-        	    array_push($P10_errors, '=> '.$newArray[0]);
+        	    array_push($P9_errors, '=> '.$newArray[0]);
         	    //echo 'ERROR: No se encuentran expresiones en segunda persona en la frase ['.$newArray[0].']';
         	}            
-            /* [REGLA 11] */
+            /* [REGLA 10] */
             if((int)$passiveCounter > 0){
                 $passivesFound=implode(", ", $passives);
-                array_push($P11_errors, '=> '.$newArray[0]);
+                array_push($P10_errors, '=> '.$newArray[0]);
             	//echo 'ERROR: Intenta no usar la voz pasiva. Como en la frase: ['.$newArray[0].']';
             }
             
             // SYNTACTIC
-            /* [REGLA 12] */
+            /* [REGLA 11] */
             if(!($arrayAnalysis[1][0]=='iof_isSubject')){
-                array_push($P12_errors, '=> '.$newArray[0]);
+                array_push($P11_errors, '=> '.$newArray[0]);
                 //echo 'ERROR: Las oraciones deben tener sujeto. Error en la frase: ['.$newArray[0].']';echo '<br>';
             }
-            /* [REGLA 13] */
+            /* [REGLA 12] */
             //Subject + verb + complements
             if(!($arrayAnalysis[1][0]=='iof_isSubject') && (!in_array('iof_isDirectObject', $arrayAnalysis) || !in_array('iof_isComplement', $arrayAnalysis))){
-                array_push($P13_errors, '=> '.$newArray[0]);
+                array_push($P12_errors, '=> '.$newArray[0]);
                 //echo 'ERROR: Las oraciones deben tener la estructura: sujeto+verbo+complementos. Error en la frase: ['.$newArray[0].']'; echo '<br>';
             }
                 
@@ -322,27 +322,24 @@ function textAnalyzer(){
     if(!empty($P5_errors)){
         $textAnalyzerArray['P5'] = 'Existen frases con más de 15 palabras: <br><br> => '. implode("<br> => ", $P5_errors);
     }
-    if(!empty($P8_errors)){
-        $textAnalyzerArray['P8'] = "Las frases no pueden contener más de 2 pronombres. <br><br>" . implode("<br>", $P8_errors);
+    if(!empty($P7_errors)){
+        $textAnalyzerArray['P7'] = "Las frases no pueden contener más de 2 pronombres. <br><br>" . implode("<br>", $P7_errors);
+    }
+    if(!empty($P9_errors)){
+        $textAnalyzerArray['P9'] = 'No se encuentran expresiones en segunda persona en las frases: <br><br>' . implode("<br>", $P9_errors);
     }
     if(!empty($P10_errors)){
-        $textAnalyzerArray['P10'] = 'No se encuentran expresiones en segunda persona en las frases: <br><br>' . implode("<br>", $P10_errors);
+        $textAnalyzerArray['P10'] = 'Intenta no usar la voz pasiva. Error en: <br><br>'. implode("<br>", $P10_errors);      
     }
     if(!empty($P11_errors)){
-        $textAnalyzerArray['P11'] = 'Intenta no usar la voz pasiva. Error en: <br><br>'. implode("<br>", $P11_errors);      
+        $textAnalyzerArray['P11'] = 'Las oraciones deben tener sujeto. Error en: <br><br>'.implode("<br>", $P11_errors);
     }
     if(!empty($P12_errors)){
-        $textAnalyzerArray['P12'] = 'Las oraciones deben tener sujeto. Error en: <br><br>'.implode("<br>", $P12_errors);
-    }
-    if(!empty($P13_errors)){
-        $textAnalyzerArray['P13'] = 'Las oraciones deben tener la estructura: "sujeto + verbo + complementos". Error en: <br><br>'.implode("<br>", $P12_errors);
+        $textAnalyzerArray['P12'] = 'Las oraciones deben tener la estructura: "sujeto + verbo + complementos". Error en: <br><br>'.implode("<br>", $P12_errors);
     }
 
 
-// ** 6) Cantidad de texto por página (75 palabras por diapositiva)
-    
-    
-/* 7) Formato de las fechas (13 de enero del 2017 en lugar de 13/01/2017) */
+/* 6) Formato de las fechas (13 de enero del 2017 en lugar de 13/01/2017) */
     
     //Iteration over the <p> returned by "getParagraphs" function
     $paragraphs = getParagraphs($pArray = array()); 
@@ -356,13 +353,13 @@ function textAnalyzer(){
         ){
             //Converting array of dates to string
             $datesFound=implode(", ", $dates[0]);
-            $textAnalyzerArray['P7'] = 'Las siguientes fechas deberían tener un formato del estilo de "28 de marzo del 2018": ('.$datesFound.').';
+            $textAnalyzerArray['P6'] = 'Las siguientes fechas deberían tener un formato del estilo de "28 de marzo del 2018": ('.$datesFound.').';
             //echo "ERROR: las siguientes fechas deberían tener un formato del estilo de '<em>28 de marzo del 2018</em>':" . '<br>' . $datesFound. '<br>';
         }
     }
 
     
-/* 9) Números romanos */
+/* 8) Números romanos */
 
     //Iteration over the <p> returned by "getParagraphs" function
     $paragraphs = getParagraphs($pArray = array()); 
@@ -372,7 +369,7 @@ function textAnalyzer(){
         if(preg_match_all("/\b(?:X?L?(?:X{0,3}(?:IX|IV|V|V?I{1,3})|IX|X{1,3})|XL|L)\b/", $paragraphs[$i], $roman)){
             //Converting array of Roman numerals to string
             $numeralsFound=implode(", ", $roman[0]);
-            $textAnalyzerArray['P9'] = 'El texto no puede contener números romanos: '.$numeralsFound.'.';
+            $textAnalyzerArray['P8'] = 'El texto no puede contener números romanos: '.$numeralsFound.'.';
             //echo "ERROR: no puede haber números romanos: " . $numeralsFound;
         }
     }
