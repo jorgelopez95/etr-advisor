@@ -21,6 +21,7 @@
     <!-- Custom styles -->
     <link rel="shortcut icon" type="image/png" href="./images/logo_etr.png"/> 
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
     
 <body>
@@ -406,7 +407,7 @@
                 </form>
             </div>
         </div>
-        
+
     <!-- Button back-to-top -->
     <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 

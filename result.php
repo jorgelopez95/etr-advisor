@@ -81,14 +81,7 @@
     <!-- Custom styles -->
     <link rel="shortcut icon" type="image/png" href="./images/logo_etr.png"/> 
     <link rel="stylesheet" href="./styles.css">
-    <style>
-        #chartdiv{
-            width: 100%; height: 350px; font-size: 20px;
-        }
-        #chartdiv .amcharts-chart-div a{
-            display: none !important;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
     
 <body onload="load()">
@@ -144,12 +137,14 @@
                         foreach($textScore as $key => $value){
                             if(!array_key_exists ($key, $textResult)){
                                 $finalScore += $textScore[$key];
+                                $finalTextScore += $textScore[$key];
                             }
                         }
                         //Design
                         foreach($designScore as $key => $value){
                             if(!array_key_exists ($key, $designResult)){
                                 $finalScore += $designScore[$key];
+                                $finalDesignScore += $designScore[$key];
                             }
                         }
                         echo round($finalScore)."%";
@@ -185,8 +180,8 @@
         <div class="row featurette">         
             <div class="row">
                 <div class="col-12" id="resultados">
-                    <h2 style="margin-bottom: 25px; font-size: 34px;">Resultados</h2> 
-                    <h5 style="font-size: 20px; font-family: Times New Roman, Times, serif; margin: 20px; color: midnightblue;"> 
+                    <h2 style="margin-bottom: 25px; font-size: 34px; font-weight: bolder">Resultados</h2> 
+                    <h5 style="font-size: 22px; font-family: Times New Roman, Times, serif; margin: 20px; color: midnightblue; font-weight: bolder"> 
                         <?php 
                             if(empty($file_uploaded)){
                                 echo "- correctos / - incorrectos";                        
@@ -256,9 +251,24 @@
             </div>
             <div class="row" id="categoria">
                 <div class="col-12">
-                    <h2 style="margin-bottom: 0px; margin-top: 35px">Puntuación por categoría</h2>
-                    <h5 style="font-size: 16px;margin-top: 15px;">El siguiente gráfico muestra el número de aciertos por categoría</h2>  
-                    <div id="chartdiv"></div>
+                    <h2 style="margin-bottom: 0px; margin-top: 35px; font-weight: bolder">Puntuación por categoría</h2>
+            	     <div class="row" style="padding-top: 2%">
+                          <div class="col-md-4">
+                            <div style="margin: 0 4em 2em; max-width: 700px;">
+                              <canvas id="pie-chart" width="800" height="650"></canvas>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div style="margin: 0 4em 2em; max-width: 700px;">
+                              <canvas id="pie-chart2" width="800" height="650"></canvas>
+                            </div>
+                        </div>
+                          <div class="col-md-4">
+                            <div style="margin: 0 4em 2em; max-width: 700px;">
+                              <canvas id="pie-chart3" width="800" height="650"></canvas>
+                            </div>
+                          </div>
+                    </div>
                 </div>
             </div>
 
@@ -274,7 +284,7 @@
                 <div id="descripTables"> 
                   <h4>Las tablas representan la puntuación sobre 10 que se le da a cada pauta, debido a que cada una posee una importancia diferente. </h4>
                   <h6><em>La valoración final se hará teniendo en cuenta dicha ponderación sobre un total de 100. 
-                          Es decir: Sumatorio de cada pauta acertada multiplicada por 100, y divida entre 152 (texto y maquetación)</em>
+                          Es decir: Sumatorio de cada pauta acertada multiplicada por 100, y dividida entre 152 (suma total de puntos de texto y maquetación)</em>
                   </h6> 
                 </div>
               <div class="col-md-6"> 
@@ -409,7 +419,7 @@
                               </tr>
                               <tr>
                                   <td>Color de fondo blanco sólido</td>
-                                  <td>8 puntos</td>
+                                  <td>9 puntos</td>
                               </tr>
                               <tr>
                                   <td>Cantidad de palabras en la diapositiva no supera el límite establecido</td>
@@ -440,40 +450,72 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="./scripts/loading.js"></script>
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-    <script>
-        $(document).ready(function(){  
-            myVar = setTimeout(showPage, 3000);
-            var chart = AmCharts.makeChart("chartdiv", {
-                "type": "pie",
-                "theme": "light",
-                "innerRadius": "40%",
-                "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
-                "dataProvider": [{
-                    "type": "Texto",
-                    "score": '<?php if(!empty($file_uploaded))$text=12-count($textResult); echo $text; ?>'
-                }, {
-                    "type": "Maquetación",
-                    "score": '<?php if(!empty($file_uploaded))$design=10-count($designResult); echo $design; ?>'
-                }],
-                "balloonText": "[[value]]",
-                "valueField": "score",
-                "titleField": "type",
-                "balloon": {
-                    "drop": true,
-                    "adjustBorderColor": false,
-                    "color": "#FFFFFF",
-                    "fontSize": 16
-                },
-                "export": {
-                    "enabled": false
-                }
-            });
-        });
-    </script>
     <script src="./scripts/top.js"></script>
-    
+    <script>
+      new Chart(document.getElementById("pie-chart"), {
+          type: 'pie',
+          data: {
+            labels: ["Texto", "Maquetación", "Fallos"],
+            datasets: [{
+              label: "Porcentaje de cada categoría",
+              backgroundColor: ["#FFD700", "#1E90FF","#F8F8FF"],
+              data: [
+                        '<?php echo round($finalTextScore, 2); ?>', 
+                        '<?php echo round($finalDesignScore, 2); ?>', 
+                        '<?php echo round((100-(round($finalTextScore,2) + round($finalDesignScore,2))), 2); ?>'
+                    ]
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: 'Porcentaje de aciertos global'
+            }
+          }
+      });
+    </script>
+    <script>
+      new Chart(document.getElementById("pie-chart2"), {
+          type: 'pie',
+          data: {
+            labels: ["Aciertos", "Fallos"],
+            datasets: [{
+              label: "Porcentaje de cada categoría",
+              backgroundColor: ["#1E90FF","#e6f5ff"],
+              data: [
+                        '<?php echo round($finalDesignScore, 2); ?>',
+                        '<?php echo round((100 - round($finalDesignScore, 2)), 2); ?>'
+                    ]
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: 'Porcentaje de aciertos en maquetación'
+            }
+          }
+      });
+    </script>
+    <script>
+      new Chart(document.getElementById("pie-chart3"), {
+          type: 'pie',
+          data: {
+            labels: ["Aciertos", "Fallos"],
+            datasets: [{
+              label: "Porcentaje de cada categoría",
+              backgroundColor: ["#FFD700","#FDF5E6"],
+              data: [
+                        '<?php echo round($finalTextScore, 2); ?>', 
+                        '<?php echo round(100 - round($finalTextScore, 2), 2); ?>']
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: 'Porcentaje de aciertos en texto'
+            }
+          }
+      });
+    </script>
 </body>
 </html>
