@@ -143,7 +143,7 @@
         <div class="col-lg-4">
           <img class="img-circle" src="./images/laptop.png" alt="Generic placeholder image" width="140" height="140">
           <h2>Crea tu contenido</h2>
-            <p><b>Easy-to-Read Advisor</b> analiza tu diapositiva, en formato <b>HTML</b>. Por tanto, el primer paso es obtener el contenido en dicho formato. La web <a class="" href="https://slidewiki.org/" target="_blank">SlideWiki</a> realiza esta labor por ti. </p>
+            <p><b>Easy-to-Read Advisor</b> analiza tu diapositiva, en formato <b>HTML</b>. <br> Por tanto, el primer paso es obtener el contenido en dicho formato. <br> La web <a class="" href="https://slidewiki.org/" target="_blank">SlideWiki</a> realiza esta labor por ti. </p>
               <!-- Collapse -->  
               <button class="btn btn-default buttonCollapse" onclick="document.getElementById('id01').style.display='block'">   
                   <h4>
@@ -190,7 +190,7 @@
         <div class="col-lg-4">
           <img class="img-circle" src="./images/resultados.jpg" alt="Resultados" width="140" height="140">
           <h2>Resultados</h2>
-          <p>Una vez se haya procesado tu fichero, se proporcionará una <b>puntuación</b>. Además, se mostrará un <b>análisis detallado</b> de aquellos puntos que debes mejorar.</p>
+          <p>Cuando la aplicación procese tu fichero, proporcionará una <b>puntuación</b>. Además, podrás recibir un <b>análisis detallado</b> de aquellos puntos que debes mejorar.</p>
         </div> 
         
 
@@ -206,8 +206,10 @@
         <div class="row featurette" style="padding-top: 20px">
         <div class="col-md-7">
             <h2 class="featurette-heading" id="metodologia">Metodología</h2><br>
-            <p class="lead" style="padding-left: 26px; font-size: 18px">La lectura fácil es la adaptación que permite una lectura y una comprensión más sencilla de un contenido. No sólo abarca el <b>texto</b>, sino también se refiere a las ilustraciones y <b>maquetación</b>. Se considera también lectura fácil el método por el cual se hacen más comprensibles los textos para todas y todos, eliminando barreras para la <b>comprensión</b>, el aprendizaje y la participación. (<a href="https://es.wikipedia.org/wiki/Lectura_f%C3%A1cil" target="_blank">vía Wikipedia</a>)</p> <br><br>
-            <p class="lead" style="padding-left: 26px; font-size: 18px">Lectura Fácil se dirige a todas las personas, en especial a aquellas que tienen <b>dificultades lectoras</b> transitorias (inmigración, incorporación tardía a la lectura, escolarización deficiente...) o permanentes (trastornos del aprendizaje, diversidad funcional, senilidad...). (<a href="http://www.lecturafacil.net/es/info/que-es-la-lectura-facil-lf1/" target="_blank">vía Asociación de Lectura Fácil</a>)</p>
+            <p class="lead" style="padding-left: 26px; font-size: 16px">Lectura Fácil es la adaptación que permite una lectura y comprensión más sencilla del contenido. No sólo abarca el <b>texto</b>, sino también se refiere a las ilustraciones y <b>maquetación</b>. </p>
+            <p class="lead" style="padding-left: 26px; font-size: 16px">El método por el cual se hacen más comprensibles los textos, también es Lectura Fácil. Esto elimina barreras para la <b>comprensión</b>, aprendizaje y participación.</p> 
+            <p class="lead" style="padding-left: 26px; font-size: 16px">La intención de la Lectura Fácil es dirigirse a todas las personas. Aquellas que tienen <b>dificultades lectoras</b> transitorias son las principales beneficiadas. </p> 
+            <p class="lead" style="padding-left: 26px; font-size: 16px">Los colectivos involucrados son personas con escolarización deficiente, inmigrantes o con algún tipo de transtorno.</p>
         </div>
         <div class="col-md-5">
             <div class="embed-responsive embed-responsive-16by9" style=" margin: 50px 25px 20px 25px">

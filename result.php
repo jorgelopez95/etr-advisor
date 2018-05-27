@@ -181,7 +181,7 @@
             <div class="row">
                 <div class="col-12" id="resultados">
                     <h2 style="margin-bottom: 25px; font-size: 34px; font-weight: bolder">Resultados</h2> 
-                    <h5 style="font-size: 22px; font-family: Times New Roman, Times, serif; margin: 20px; color: midnightblue; font-weight: bolder"> 
+                    <h5 style="font-size: 22px; margin: 20px; color: midnightblue"> 
                         <?php 
                             if(empty($file_uploaded)){
                                 echo "- correctos / - incorrectos";                        
@@ -251,7 +251,7 @@
             </div>
             <div class="row" id="categoria">
                 <div class="col-12">
-                    <h2 style="margin-bottom: 0px; margin-top: 35px; font-weight: bolder">Puntuación por categoría</h2>
+                    <h2 style="margin-bottom: 0px; margin-top: 45px; font-weight: bolder">Puntuación por categoría</h2>
             	     <div class="row" style="padding-top: 2%">
                           <div class="col-md-4">
                             <div style="margin: 0 4em 2em; max-width: 700px;">
@@ -282,7 +282,7 @@
         </div>
         <div class="row featurette"> 
                 <div id="descripTables"> 
-                  <h4>Las tablas representan la puntuación sobre 10 que se le da a cada pauta, debido a que cada una posee una importancia diferente. </h4>
+                  <h4>Las tablas representan la puntuación sobre 10 que se le da a cada pauta. Esto es debido a que cada una posee una importancia diferente. </h4>
                   <h6><em>La valoración final se hará teniendo en cuenta dicha ponderación sobre un total de 100. 
                           Es decir: Sumatorio de cada pauta acertada multiplicada por 100, y dividida entre 152 (suma total de puntos de texto y maquetación)</em>
                   </h6> 
