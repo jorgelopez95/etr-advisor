@@ -19,7 +19,7 @@ function textAnalyzer(){
     $textAnalyzerArray = array();
  
     //Function getParagraphs, located at textConverter.php file
-    $paragraphs = getParagraphs($pArray = array());
+    $paragraphs = getParagraphs();
    
 
 /* 1) Longitud de las líneas (60 caracteres frase) */
@@ -342,7 +342,7 @@ function textAnalyzer(){
 /* 6) Formato de las fechas (13 de enero del 2017 en lugar de 13/01/2017) */
     
     //Iteration over the <p> returned by "getParagraphs" function
-    $paragraphs = getParagraphs($pArray = array()); 
+    $paragraphs = getParagraphs(); 
     for($i=0; $i<count($paragraphs); $i++) {
         
         //Looking for a date format
@@ -362,7 +362,7 @@ function textAnalyzer(){
 /* 8) Números romanos */
 
     //Iteration over the <p> returned by "getParagraphs" function
-    $paragraphs = getParagraphs($pArray = array()); 
+    $paragraphs = getParagraphs(); 
     for($i=0; $i<count($paragraphs); $i++) {
 
         //Looking for a Roman numerals

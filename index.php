@@ -21,7 +21,6 @@
     <!-- Custom styles -->
     <link rel="shortcut icon" type="image/png" href="./images/logo_etr.png"/> 
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
     
 <body>
@@ -192,11 +191,6 @@
           <h2>Resultados</h2>
           <p>Cuando la aplicación procese tu fichero, proporcionará una <b>puntuación</b>. Además, podrás recibir un <b>análisis detallado</b> de aquellos puntos que debes mejorar.</p>
         </div> 
-        
-
-       
-
-      
     </div><!-- /.row -->
 
         <!-- Lectura fácil -->

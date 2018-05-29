@@ -257,7 +257,7 @@ function designAnalyzer(){
 /* 8) Color de fuente negro */	
 
     $P8_errors = array();
-    //Definition of tags wich can include "style="color"
+    //Definition of tags which can include "style="color"
     $colorTags = $xpath->query('//body | //span | //p | //div | //a | //li | //ol | //h1 | //h2 | //h3 | //h4 | //h5 | //h6');
     $length = $colorTags->length;
     

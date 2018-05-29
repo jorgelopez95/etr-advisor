@@ -55,13 +55,15 @@ if(!isset($_SESSION)){ session_start(); }
 /**
 * In this funtion, only the text placed into <p> tags is taked into account
 **/
-    function getParagraphs($text = array()){
+    function getParagraphs(){
         //HTML DOM structure
         $doc = new DOMDocument();
         $file_uploaded = $_SESSION['file_uploaded'];
         $file_uploaded = './input' . $file_uploaded . '.html';
         $doc->loadHTMLFile($file_uploaded);
         $doc->saveHTML();        
+
+        $text = array();
 
         //Searching tags that can include text
         $p = $doc->getElementsByTagName('p');
