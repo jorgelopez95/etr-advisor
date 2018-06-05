@@ -461,7 +461,7 @@ body {
     }
     /* Modal Content/Box */
     .modal-content {
-	    margin: 35% auto 25% 2%; 
+	    margin: 35% 25% 20% 12%;
 	    border: 1px solid #888;
 	    width: 75%; 
 	    border-radius: 10px;
@@ -473,6 +473,19 @@ body {
         margin-top: 2%;
         margin-bottom: 2%;
         margin-right: -2%;
+    }
+    .carousel-caption p {
+        font-family: inherit;
+        font-style: normal;
+        font-size: 18px;
+    }
+    .carousel-caption h2 {
+        font-family: inherit;
+        font-style: normal;
+    }
+    #textWait{
+        font-family: inherit;
+        font-style: normal;
     }
 }
 

@@ -124,7 +124,7 @@
         
         <!-- Score -->
         <div class="well" id="puntuacion" style="margin-top: 0px">
-                <h3 style="text-align:center; font-size: 40px; font-style: italic">Puntuación</h3>
+                <h3 style="text-align:center; font-size: 40px">Puntuación</h3>
         </div>
         <div class="row featurette" id="score">
             <h4>Has obtenido una valoración de:</h4> 
@@ -175,7 +175,7 @@
          
          <!-- Análisis -->
         <div class="well" id="analisis" style="margin-top: 0px">
-                <h3 style="text-align:center; font-size: 40px; font-style: italic">Análisis de resultados</h3>
+                <h3 style="text-align:center; font-size: 40px">Análisis de resultados</h3>
         </div>
         <div class="row featurette">         
             <div class="row">
@@ -278,7 +278,7 @@
         
         <!-- Points -->
         <div class="well" id="pautas" style="margin-top: 0px">
-                <h3 style="text-align:center; font-size: 40px; font-style: italic">Pautas</h3>
+                <h3 style="text-align:center; font-size: 40px">Pautas</h3>
         </div>
         <div class="row featurette"> 
                 <div id="descripTables"> 
@@ -287,79 +287,6 @@
                           Es decir: Sumatorio de cada pauta acertada multiplicada por 100, y dividida entre 152 (suma total de puntos de texto y maquetación)</em>
                   </h6> 
                 </div>
-              <div class="col-md-6"> 
-                  <div class="panel panel-info" style="margin: 20px 20px 0px 20px">
-                      <div class="panel-heading" style="text-align: center; font-size: 20px; color:black">TEXTO</div>
-                      <table class="table table-hover">
-                          <tbody>
-                              <tr>
-                                  <td>El tamaño de las líneas debe de ser inferior a 60 caracteres</td>
-                                  <td>8 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Evitar el uso de números grandes</td>
-                                  <td>4 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Evitar el uso de caracteres especiales</td>
-                                  <td>8 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Evitar el uso de caracteres de orden</td>
-                                  <td>2 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Evitar el uso de más de 15 palabras por frase</td>
-                                  <td>6 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Escribir las fechas al completo
-                                      <div class="info">
-                                          <img  src="./images/info.png" alt="info" style="margin-left: 8px">
-                                          <span class="infoText2">
-                                              <dl>
-                                                  <dt><span class="glyphicon glyphicon-ok"></span></dt>
-                                                  <dd>22 de junio del 2018</dd>
-                                                  <dt><span class="glyphicon glyphicon-remove"></span></dt>
-                                                  <dd>22/06/2018</dd>   
-                                              </dl>
-                                          </span> 
-                                  </div>
-                                      </td>
-                                  <td>1 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Evitar abusar de los pronombres</td>
-                                  <td>3 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>No utilizar números romanos</td>
-                                  <td>8 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Dirigir el mensaje a la audiencia usando la 2ª persona</td>
-                                  <td>10 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>No utilizar la forma pasiva</td>
-                                  <td>10 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Las oraciones han de tener sujeto</td>
-                                  <td>8 puntos</td>
-                              </tr>
-                              <tr>
-                                  <td>Las oraciones deben seguir el orden de: sujeto + verbo + complementos</td>
-                                  <td>9 puntos</td>
-                              </tr>
-                              <!--tr>
-                                <td></td>
-                                  <td style="font-weight: bolder">50 puntos</td>
-                              </tr-->
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
               <div class="col-md-6">  
                   <div class="panel panel-warning" style="margin: 20px 20px 0px 20px">
                       <div class="panel-heading" style="text-align: center; font-size: 20px; color: black">MAQUETACIÓN</div>
@@ -424,6 +351,79 @@
                               <tr>
                                   <td>Cantidad de palabras en la diapositiva no supera el límite establecido</td>
                                   <td>8 puntos</td> 
+                              </tr>
+                              <!--tr>
+                                <td></td>
+                                  <td style="font-weight: bolder">50 puntos</td>
+                              </tr-->
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="col-md-6"> 
+                  <div class="panel panel-info" style="margin: 20px 20px 0px 20px">
+                      <div class="panel-heading" style="text-align: center; font-size: 20px; color:black">TEXTO</div>
+                      <table class="table table-hover">
+                          <tbody>
+                              <tr>
+                                  <td>El tamaño de las líneas debe de ser inferior a 60 caracteres</td>
+                                  <td>8 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Evitar el uso de números grandes</td>
+                                  <td>4 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Evitar el uso de caracteres especiales</td>
+                                  <td>8 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Evitar el uso de caracteres de orden</td>
+                                  <td>2 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Evitar el uso de más de 15 palabras por frase</td>
+                                  <td>6 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Escribir las fechas al completo
+                                      <div class="info">
+                                          <img  src="./images/info.png" alt="info" style="margin-left: 8px">
+                                          <span class="infoText2">
+                                              <dl>
+                                                  <dt><span class="glyphicon glyphicon-ok"></span></dt>
+                                                  <dd>22 de junio del 2018</dd>
+                                                  <dt><span class="glyphicon glyphicon-remove"></span></dt>
+                                                  <dd>22/06/2018</dd>   
+                                              </dl>
+                                          </span> 
+                                  </div>
+                                      </td>
+                                  <td>1 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Evitar abusar de los pronombres</td>
+                                  <td>3 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>No utilizar números romanos</td>
+                                  <td>8 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Dirigir el mensaje a la audiencia usando la 2ª persona</td>
+                                  <td>10 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>No utilizar la forma pasiva</td>
+                                  <td>10 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Las oraciones han de tener sujeto</td>
+                                  <td>8 puntos</td>
+                              </tr>
+                              <tr>
+                                  <td>Las oraciones deben seguir el orden de: sujeto + verbo + complementos</td>
+                                  <td>9 puntos</td>
                               </tr>
                               <!--tr>
                                 <td></td>

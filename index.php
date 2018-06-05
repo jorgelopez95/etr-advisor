@@ -135,7 +135,7 @@
     <!-- Informacion del sitio web -->
     <div class="container marketing" style="margin: 0px; padding: 0px">
         <div class="well" id="info" style="margin-top: 40px">
-                <h3 style="text-align:center; font-size: 40px; font-style: italic">Información del sitio web</h3>
+                <h3 style="text-align:center; font-size: 40px">Información del sitio web</h3>
         </div>
 
         <div class="row">
@@ -195,7 +195,7 @@
 
         <!-- Lectura fácil -->
         <div class="well" id="lectura" style="margin-top: 40px">
-            <h3 style="text-align:center; font-size: 40px; font-style: italic">¿Qué es la Lectura Fácil?</h3>
+            <h3 style="text-align:center; font-size: 40px">¿Qué es la Lectura Fácil?</h3>
         </div>
         <div class="row featurette" style="padding-top: 20px">
         <div class="col-md-7">
@@ -221,6 +221,79 @@
                   <h2 class="featurette-heading" id="pautas">Pautas</h2> 
               </div>
           </div>
+              <div class="col-md-6">  
+                  <div class="panel panel-warning" style="margin: 20px 20px 0px 20px">
+                      <div class="panel-heading" style="text-align: center; font-size: 20px; color: black">MAQUETACIÓN</div>
+                      <table class="table table-hover">
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      La fuente del texto pertenece a los estilos aceptados
+                                      <div class="info">
+                                          <img src="./images/info.png" alt="info" style="margin-left: 8px">
+                                          <span class="infoText">
+                                              <ul>
+                                                <li>Arial</li>
+                                                <li>Calibri</li>
+                                                <li>Candara</li>
+                                                <li>Corbel</li>
+                                                <li>Gill Sans</li>
+                                                <li>Helvética</li>
+                                                <li>Myriad</li>
+                                                <li>Segoe</li>
+                                                <li>Tahoma</li>
+                                                <li>Tiresias</li>
+                                                <li>Verdana</li>
+                                              </ul>
+                                          </span> 
+                                      </div>
+                                  </td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>El tamaño del texto tiene que ser como mínimo 12 y como máximo 16</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existe texto en cursiva</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existen más de un % de palabras en negrita</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existen más de un % de palabras subrayadas</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existen textos con sombreado</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>No existen más de un % de palabras en mayúsculas</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Color de fuente negro</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Color de fondo blanco sólido</td>
+                                  
+                              </tr>
+                              <tr>
+                                  <td>Cantidad de palabras en la diapositiva no supera el límite establecido</td>
+                           
+                              </tr>
+                              <!--tr>
+                                <td></td>
+                                  <td style="font-weight: bolder">50 puntos</td>
+                              </tr-->
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
               <div class="col-md-6"> 
                   <div class="panel panel-info" style="margin: 20px 20px 0px 20px">
                       <div class="panel-heading" style="text-align: center; font-size: 20px; color:black">TEXTO</div>
@@ -298,84 +371,11 @@
                       </table>
                   </div>
               </div>
-              <div class="col-md-6">  
-                  <div class="panel panel-warning" style="margin: 20px 20px 0px 20px">
-                      <div class="panel-heading" style="text-align: center; font-size: 20px; color: black">MAQUETACIÓN</div>
-                      <table class="table table-hover">
-                          <tbody>
-                              <tr>
-                                  <td>
-                                      La fuente del texto pertenece a los estilos aceptados
-                                      <div class="info">
-                                          <img src="./images/info.png" alt="info" style="margin-left: 8px">
-                                          <span class="infoText">
-                                              <ul>
-                                                <li>Arial</li>
-                                                <li>Calibri</li>
-                                                <li>Candara</li>
-                                                <li>Corbel</li>
-                                                <li>Gill Sans</li>
-                                                <li>Helvética</li>
-                                                <li>Myriad</li>
-                                                <li>Segoe</li>
-                                                <li>Tahoma</li>
-                                                <li>Tiresias</li>
-                                                <li>Verdana</li>
-                                              </ul>
-                                          </span> 
-                                      </div>
-                                  </td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>El tamaño del texto tiene que ser como mínimo 12 y como máximo 16</td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>No existe texto en cursiva</td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>No existen más de un % de palabras en negrita</td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>No existen más de un % de palabras subrayadas</td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>No existen textos con sombreado</td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>No existen más de un % de palabras en mayúsculas</td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>Color de fuente negro</td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>Color de fondo blanco sólido</td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>Cantidad de palabras en la diapositiva no supera el límite establecido</td>
-                           
-                              </tr>
-                              <!--tr>
-                                <td></td>
-                                  <td style="font-weight: bolder">50 puntos</td>
-                              </tr-->
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
            </div>
         
         <!-- Contacto -->
         <div class="well" id="contacto" style="margin-top: 80px; margin-bottom: 30px">
-            <h3 style="text-align:center; font-size: 40px; font-style: italic">Contacto</h3>
+            <h3 style="text-align:center; font-size: 40px">Contacto</h3>
         </div>
 	
         <div class="row">
@@ -405,7 +405,7 @@
         </div>
 
     <!-- Button back-to-top -->
-    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    <!--a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a-->
 
     <!-- Footer -->    
     <footer style="margin: 55px 0px 15px 15px; font-weight: bolder">
