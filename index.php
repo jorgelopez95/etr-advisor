@@ -405,7 +405,7 @@
         </div>
 
     <!-- Button back-to-top -->
-    <!--a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a-->
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click para subir" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
     <!-- Footer -->    
     <footer style="margin: 55px 0px 15px 15px; font-weight: bolder">
