@@ -409,6 +409,10 @@
 
     <!-- Footer -->    
     <footer style="margin: 55px 0px 15px 15px; font-weight: bolder">
+        <p style="font-size: 14px;font-family: monospace;padding: 1%;"> 
+          This web application has been developed in the context of the SlideWiki project. <br> 
+          Such a project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No 688095.
+        </p>
         <p>&copy; Escuela Técnica Superior de Ingenieros Informáticos (UPM).</p>
     </footer>
     </div>
